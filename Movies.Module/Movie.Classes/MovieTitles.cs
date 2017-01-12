@@ -8,12 +8,18 @@
 
         public string MovieTitle { get; set; }
 
-        public int StudioId { get; set; }
+        public Studios Studio { get; set; }
+
+        public int StudiosId { get; set; }
 
         public string MovieDesc { get; set; }
 
         public DateTime ReleaseDt { get; set; }
 
         public string ImdbUrl { get; set; }
+
+        public MoviesOwned Movie { get; set; }
+
+        public int MoviesOwnedId { get; set; }
     }
 }
