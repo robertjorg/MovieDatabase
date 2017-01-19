@@ -2,8 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
 
-    public class MoviesOwned
+    using Movie.Classes.Interfaces;
+
+    [Table("MoviesOwned")]
+    public class MoviesOwned : IModificationHistory
     {
         public int Id { get; set; }
 
@@ -21,8 +25,10 @@
 
         public List<Loan> Loan { get; set; }
 
-        public int LoanId { get; set; }
+        public DateTime DateModified { get; set; }
 
-        public DateTime EnterDt { get; set; }
+        public DateTime DateAdded { get; set; }
+
+        public bool IsDirty { get; set; }
     }
 }

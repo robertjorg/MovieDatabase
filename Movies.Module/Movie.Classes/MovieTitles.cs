@@ -2,7 +2,9 @@
 {
     using System;
 
-    public class MovieTitles
+    using Movie.Classes.Interfaces;
+
+    public class MovieTitles : IModificationHistory
     {
         public int Id { get; set; }
 
@@ -14,12 +16,14 @@
 
         public string MovieDesc { get; set; }
 
-        public DateTime ReleaseDt { get; set; }
+        public DateTime? ReleaseDt { get; set; }
 
         public string ImdbUrl { get; set; }
 
-        public MoviesOwned Movie { get; set; }
+        public DateTime DateModified { get; set; }
 
-        public int MoviesOwnedId { get; set; }
+        public DateTime DateAdded { get; set; }
+
+        public bool IsDirty { get; set; }
     }
 }

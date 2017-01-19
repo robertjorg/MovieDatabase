@@ -17,5 +17,11 @@
         public DbSet<Studios> Studios { get; set; }
 
         public DbSet<Loan> Loan { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Types().Configure(c => c.Ignore("IsDirty"));
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

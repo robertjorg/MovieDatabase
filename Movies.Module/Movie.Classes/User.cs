@@ -3,12 +3,18 @@
     using System;
     using System.Collections.Generic;
 
-    public class User
+    using Microsoft.Build.Framework;
+
+    using Movie.Classes.Interfaces;
+
+    public class User : IModificationHistory
     {
         public int Id { get; set; }
 
+        [Required]
         public string FirstName { get; set; }
 
+        [Required]
         public string LastName { get; set; }
 
         public DateTime OpentDt { get; set; }
@@ -16,5 +22,11 @@
         public DateTime LastLoginDt { get; set; }
 
         public List<MoviesOwned> MoviesOwned { get; set; }
+
+        public DateTime DateModified { get; set; }
+
+        public DateTime DateAdded { get; set; }
+
+        public bool IsDirty { get; set; }
     }
 }
