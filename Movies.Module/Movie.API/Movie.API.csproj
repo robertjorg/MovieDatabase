@@ -236,7 +236,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -320,6 +320,16 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Movie.Classes\Movie.Classes.csproj">
+      <Project>{3D06A3BE-5151-41C3-B467-CEC68D5CC3E4}</Project>
+      <Name>Movie.Classes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Movie.DataModel\Movie.DataModel.csproj">
+      <Project>{D3E17820-ECCE-43AC-8249-FB7571B8D30F}</Project>
+      <Name>Movie.DataModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

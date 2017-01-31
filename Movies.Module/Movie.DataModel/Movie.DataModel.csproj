@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMovieRepository.cs" />
     <Compile Include="Migrations\201701200438155_initial.cs" />
     <Compile Include="Migrations\201701200438155_initial.Designer.cs">
       <DependentUpon>201701200438155_initial.cs</DependentUpon>
@@ -56,6 +57,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MovieContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MovieRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
