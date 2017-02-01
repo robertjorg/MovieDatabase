@@ -8,28 +8,33 @@ using System.Web.Http;
 
 namespace Movie.API.Controllers
 {
+    using Movie.API.Models;
     using Movie.Classes;
 
     [Route("Movies/Users")]
     public class UsersController : ApiController
     {
-        public IEnumerable<User> Get()
-        {
-            var repo = new MovieRepository(new MovieContext());
+        private IMovieRepository movieRepo;
 
-            var results = repo.GetAllUsers().ToList();
+        private ModelFactory modelFactory;
+
+        public UsersController(IMovieRepository movieRepo)
+        {
+            this.movieRepo = movieRepo;
+            this.modelFactory = new ModelFactory();
+        }
+
+        public IEnumerable<UserModel> Get()
+        {
+            var results = this.movieRepo.GetAllUsers().ToList().Select(u => this.modelFactory.Create(u));
 
             return results;
         }
 
         [Route("Movies/Users({id})")]
-        public User Get(int id)
+        public UserModel Get(int id)
         {
-            var repo = new MovieRepository(new MovieContext());
-
-            var results = repo.GetSingleUser(id);
-
-            return results;
+            return this.modelFactory.Create(this.movieRepo.GetSingleUser(id));
         }
     }
 }

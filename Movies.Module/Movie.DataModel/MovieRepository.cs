@@ -10,21 +10,21 @@ namespace Movie.DataModel
 
     public class MovieRepository : IMovieRepository
     {
-        private MovieContext db;
+        private MovieContext movieContext;
 
-        public MovieRepository(MovieContext db)
+        public MovieRepository(MovieContext movieContext)
         {
-            this.db = db;
+            this.movieContext = movieContext;
         }
 
         public IQueryable<User> GetAllUsers()
         {
-            return this.db.User;
+            return this.movieContext.User;
         }
 
         public User GetSingleUser(int id)
         {
-            return this.db.User.FirstOrDefault(u => u.Id == id);
+            return this.movieContext.User.FirstOrDefault(u => u.Id == id);
         }
     }
 }

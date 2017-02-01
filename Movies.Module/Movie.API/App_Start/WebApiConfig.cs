@@ -8,6 +8,8 @@ using Newtonsoft.Json.Serialization;
 
 namespace Movie.API
 {
+    using System.Net.Http.Formatting;
+
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
@@ -23,7 +25,10 @@ namespace Movie.API
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}({id})",
-                defaults: new { id = RouteParameter.Optional });;
+                defaults: new { id = RouteParameter.Optional });
+
+            var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().FirstOrDefault();
+            jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver(); // Consumers will be JavaScript? This will make it easier for them to use camel case.
         }
     }
 }
