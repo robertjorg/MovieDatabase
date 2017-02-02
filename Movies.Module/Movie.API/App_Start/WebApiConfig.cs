@@ -23,9 +23,14 @@ namespace Movie.API
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}({id})",
-                defaults: new { id = RouteParameter.Optional });
+                name: "Users",
+                routeTemplate: "MovieKeep/Users({id})",
+                defaults: new { controller = "Users", id = RouteParameter.Optional });
+
+            config.Routes.MapHttpRoute(
+                name: "Movies",
+                routeTemplate: "MovieKeep/Users({userId})/Movies({id})",
+                defaults: new { controller = "MoviesOwned", id = RouteParameter.Optional });
 
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().FirstOrDefault();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver(); // Consumers will be JavaScript? This will make it easier for them to use camel case.

@@ -26,5 +26,15 @@ namespace Movie.DataModel
         {
             return this.movieContext.User.FirstOrDefault(u => u.Id == id);
         }
+
+        public IQueryable<MoviesOwned> GetMoviesForUser(int userId)
+        {
+            return this.movieContext.MoviesOwned.Include("MovieTitles").Where(u => u.UserId == userId);
+        }
+
+        public MoviesOwned GetSingleMovieOwned(int userId, int id)
+        {
+            return this.movieContext.MoviesOwned.Include("MovieTitles").Where(u => u.UserId == userId && u.Id == id).FirstOrDefault();
+        }
     }
 }

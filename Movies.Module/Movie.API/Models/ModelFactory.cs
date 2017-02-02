@@ -32,5 +32,25 @@ namespace Movie.API.Models
                 OpenDt = user.OpentDt
             };
         }
+
+        public MoviesOwnedModel Create(MoviesOwned moviesOwned)
+        {
+            return new MoviesOwnedModel()
+            {
+                MovieTitle = moviesOwned.MovieTitles.Select(t => Create(t))
+            };
+        }
+
+        public MovieTitlesModel Create(MovieTitles movieTitles)
+        {
+            return new MovieTitlesModel()
+            {
+                Id = movieTitles.Id,
+                MovieTitle = movieTitles.MovieTitle,
+                MovieDesc = movieTitles.MovieDesc,
+                ReleaseDate = movieTitles.ReleaseDt,
+                ImdbUrl = movieTitles.ImdbUrl
+            };
+        }
     }
 }

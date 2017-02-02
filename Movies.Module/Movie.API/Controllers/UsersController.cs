@@ -11,7 +11,7 @@ namespace Movie.API.Controllers
     using Movie.API.Models;
     using Movie.Classes;
 
-    [Route("Movies/Users")]
+    [Route("MovieKeep/Users")]
     public class UsersController : ApiController
     {
         private IMovieRepository movieRepo;
@@ -31,7 +31,7 @@ namespace Movie.API.Controllers
             return results;
         }
 
-        [Route("Movies/Users({id})")]
+        [Route("MovieKeep/Users({id})")]
         public UserModel Get(int id)
         {
             return this.modelFactory.Create(this.movieRepo.GetSingleUser(id));
