@@ -21,12 +21,12 @@
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Types().Configure(c => c.Ignore("IsDirty"));
-            modelBuilder.Entity<MoviesOwned>().HasMany(p => p.MovieTitles).WithMany().Map(
-                m =>
-                    {
-                        m.MapLeftKey("MoviesOwnedId").MapRightKey("MovesOwnedId").ToTable("MoviesOwnedMovieTitles");
-                    });
-            base.OnModelCreating(modelBuilder);
+            //modelBuilder.Entity<MoviesOwned>().HasRequired(p => p.MovieTitles).WithMany().Map(
+            //    m =>
+            //        {
+            //            m.MapLeftKey("MoviesOwnedId").MapRightKey("MovesOwnedId").ToTable("MoviesOwnedMovieTitles");
+            //        });
+            //base.OnModelCreating(modelBuilder);
         }
     }
 }

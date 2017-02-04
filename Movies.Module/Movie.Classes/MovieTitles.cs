@@ -10,9 +10,7 @@
 
         public string MovieTitle { get; set; }
 
-        public Studios Studio { get; set; }
-
-        public int StudiosId { get; set; }
+        public int? StudiosId { get; set; }
 
         public string MovieDesc { get; set; }
 

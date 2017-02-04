@@ -17,5 +17,7 @@ namespace Movie.DataModel
         User GetSingleUser(int id);
 
         IQueryable<MoviesOwned> GetMoviesForUser(int userId);
+
+        MovieTitles GetTitleForMovie(int movieTitlesId);
     }
 }

@@ -50,9 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IMovieRepository.cs" />
-    <Compile Include="Migrations\201701200438155_initial.cs" />
-    <Compile Include="Migrations\201701200438155_initial.Designer.cs">
-      <DependentUpon>201701200438155_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201702030513483_newInitial.cs" />
+    <Compile Include="Migrations\201702030513483_newInitial.Designer.cs">
+      <DependentUpon>201702030513483_newInitial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MovieContext.cs" />
@@ -70,8 +70,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701200438155_initial.resx">
-      <DependentUpon>201701200438155_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702030513483_newInitial.resx">
+      <DependentUpon>201702030513483_newInitial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

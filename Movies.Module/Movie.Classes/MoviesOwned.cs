@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
 
     using Movie.Classes.Interfaces;
 
@@ -15,13 +16,13 @@
 
         public int UserId { get; set; }
 
-        public List<MovieTitles> MovieTitles { get; set; }
+        public MovieTitles MovieTitle { get; set; }
 
         public int MovieTitlesId { get; set; }
 
         public StorageType StorageType { get; set; }
 
-        public int StorageTypeId { get; set; }
+        public int? StorageTypeId { get; set; }
 
         public List<Loan> Loan { get; set; }
 

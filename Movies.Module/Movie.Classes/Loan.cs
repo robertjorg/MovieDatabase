@@ -17,8 +17,6 @@
 
         public string LoanToLastName { get; set; }
 
-        public List<MoviesOwned> MoviesLoaned { get; set; }
-
         public int MoviesOwnedId { get; set; }
 
         public DateTime DateModified { get; set; }

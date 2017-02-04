@@ -29,12 +29,18 @@ namespace Movie.DataModel
 
         public IQueryable<MoviesOwned> GetMoviesForUser(int userId)
         {
-            return this.movieContext.MoviesOwned.Include("MovieTitles").Where(u => u.UserId == userId);
+            // return this.movieContext.MoviesOwned.Include("MovieTitles").Where(u => u.UserId == userId);
+            return this.movieContext.MoviesOwned.Where(u => u.UserId == userId);
         }
 
         public MoviesOwned GetSingleMovieOwned(int userId, int id)
         {
-            return this.movieContext.MoviesOwned.Include("MovieTitles").Where(u => u.UserId == userId && u.Id == id).FirstOrDefault();
+            return this.movieContext.MoviesOwned.FirstOrDefault(u => u.UserId == userId && u.Id == id);
+        }
+
+        public MovieTitles GetTitleForMovie(int movieTitlesId)
+        {
+            return this.movieContext.MovieTitles.FirstOrDefault(m => m.Id == movieTitlesId);
         }
     }
 }

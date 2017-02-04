@@ -7,29 +7,27 @@ using System.Web.Http;
 
 namespace Movie.API.Controllers
 {
-    using System.Data.Entity;
-
     using Movie.API.Models;
-    using Movie.Classes;
     using Movie.DataModel;
 
-    [Route("MovieKeep/Users({userId})/Movies")]
-    public class MoviesOwnedController : ApiController
+    [Route("MovieKeep/MovieTitles")]
+    public class MovieTitlesController : ApiController
     {
         private IMovieRepository movieRepository;
 
         private ModelFactory modelFactory;
 
-        public MoviesOwnedController(IMovieRepository movieRepository)
+        public MovieTitlesController(IMovieRepository movieRepository)
         {
             this.movieRepository = movieRepository;
             this.modelFactory = new ModelFactory();
         }
 
-        [Route("MovieKeep/Users({userId})/Movies")]
-        public IEnumerable<MoviesOwnedModel> Get(int userId)
+        [Route("MovieKeep/User({userId})/MoviesOwned/MovieTitles({id})")]
+        public MovieTitlesModel Get(int moviesTitleId)
         {
-            var results = this.movieRepository.GetMoviesForUser(userId).ToList().Select(m => this.modelFactory.Create(m));
+            var results =
+                this.modelFactory.Create(this.movieRepository.GetTitleForMovie(moviesTitleId));
 
             return results;
         }
