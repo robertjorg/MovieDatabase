@@ -16,7 +16,7 @@
 
         public int UserId { get; set; }
 
-        public MovieTitles MovieTitle { get; set; }
+        public MovieTitles MovieTitles { get; set; }
 
         public int MovieTitlesId { get; set; }
 

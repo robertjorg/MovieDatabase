@@ -50,9 +50,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IMovieRepository.cs" />
-    <Compile Include="Migrations\201702030513483_newInitial.cs" />
-    <Compile Include="Migrations\201702030513483_newInitial.Designer.cs">
-      <DependentUpon>201702030513483_newInitial.cs</DependentUpon>
+    <Compile Include="Migrations\201702060314061_RedoIt.cs" />
+    <Compile Include="Migrations\201702060314061_RedoIt.Designer.cs">
+      <DependentUpon>201702060314061_RedoIt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702060400419_UPdated.cs" />
+    <Compile Include="Migrations\201702060400419_UPdated.Designer.cs">
+      <DependentUpon>201702060400419_UPdated.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MovieContext.cs" />
@@ -70,8 +74,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702030513483_newInitial.resx">
-      <DependentUpon>201702030513483_newInitial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702060314061_RedoIt.resx">
+      <DependentUpon>201702060314061_RedoIt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702060400419_UPdated.resx">
+      <DependentUpon>201702060400419_UPdated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

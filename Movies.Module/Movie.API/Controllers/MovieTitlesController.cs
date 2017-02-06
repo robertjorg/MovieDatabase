@@ -13,23 +13,38 @@ namespace Movie.API.Controllers
     [Route("MovieKeep/MovieTitles")]
     public class MovieTitlesController : ApiController
     {
-        private IMovieRepository movieRepository;
+        private IMovieRepository movieRepo;
 
         private ModelFactory modelFactory;
 
-        public MovieTitlesController(IMovieRepository movieRepository)
+        public MovieTitlesController(IMovieRepository movieRepo)
         {
-            this.movieRepository = movieRepository;
+            this.movieRepo = movieRepo;
             this.modelFactory = new ModelFactory();
         }
 
-        [Route("MovieKeep/User({userId})/MoviesOwned/MovieTitles({id})")]
-        public MovieTitlesModel Get(int moviesTitleId)
+        [Route("MovieKeep/MovieTitles")]
+        public IEnumerable<MovieTitlesModel> Get()
         {
-            var results =
-                this.modelFactory.Create(this.movieRepository.GetTitleForMovie(moviesTitleId));
+            return this.movieRepo.GetMovieTitles().ToList().Select(t => this.modelFactory.Create(t));
+        }
 
-            return results;
+        [Route("MovieKeep/Users{(userId)}/MoviesOwned{(moviesOwnedId)}/MovieTitles")]
+        public IEnumerable<MovieTitlesModel> Get(int userId, int moviesOwnedId)
+        {
+            return this.movieRepo.GetMovieTitles().ToList().Select(t => this.modelFactory.Create(t));
+        }
+
+        [Route("MovieKeep/MovieTitles({id})")]
+        public MovieTitlesModel Get(int id)
+        {
+            return this.modelFactory.Create(this.movieRepo.GetTitleForMovie(id));
+        }
+
+        [Route("MovieKeep/User{(userId)}/MoviesOwned{(moviesOwnedId)}/MovieTitles({id})")]
+        public MovieTitlesModel Get(int userId, int moviesOwnedId, int id)
+        {
+            return this.modelFactory.Create(this.movieRepo.GetTitleForMovie(id));
         }
     }
 }

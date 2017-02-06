@@ -39,7 +39,7 @@ namespace Movie.API.Models
             {
                 Id = moviesOwned.Id,
                 MovieTitlesId = moviesOwned.MovieTitlesId,
-                //MovieTitles = moviesOwned.MovieTitle.MovieTitle.Select(t => Create(t));
+                MovieTitle = new MovieTitles()
             };
         }
 

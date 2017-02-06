@@ -3,7 +3,7 @@ namespace Movie.DataModel.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class newInitial : DbMigration
+    public partial class RedoIt : DbMigration
     {
         public override void Up()
         {
@@ -36,29 +36,10 @@ namespace Movie.DataModel.Migrations
                         DateAdded = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.MovieTitles", t => t.MovieTitlesId, cascadeDelete: true)
                 .ForeignKey("dbo.StorageTypes", t => t.StorageTypeId)
                 .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId)
-                .Index(t => t.MovieTitlesId)
                 .Index(t => t.StorageTypeId);
-            
-            CreateTable(
-                "dbo.MovieTitles",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        MovieTitle = c.String(),
-                        StudiosId = c.Int(),
-                        MovieDesc = c.String(),
-                        ReleaseDt = c.DateTime(),
-                        ImdbUrl = c.String(),
-                        DateModified = c.DateTime(nullable: false),
-                        DateAdded = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Studios", t => t.StudiosId)
-                .Index(t => t.StudiosId);
             
             CreateTable(
                 "dbo.StorageTypes",
@@ -87,6 +68,23 @@ namespace Movie.DataModel.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "dbo.MovieTitles",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        MovieTitle = c.String(),
+                        StudiosId = c.Int(),
+                        MovieDesc = c.String(),
+                        ReleaseDt = c.DateTime(),
+                        ImdbUrl = c.String(),
+                        DateModified = c.DateTime(nullable: false),
+                        DateAdded = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Studios", t => t.StudiosId)
+                .Index(t => t.StudiosId);
+            
+            CreateTable(
                 "dbo.Studios",
                 c => new
                     {
@@ -104,17 +102,15 @@ namespace Movie.DataModel.Migrations
             DropForeignKey("dbo.MovieTitles", "StudiosId", "dbo.Studios");
             DropForeignKey("dbo.MoviesOwned", "UserId", "dbo.Users");
             DropForeignKey("dbo.MoviesOwned", "StorageTypeId", "dbo.StorageTypes");
-            DropForeignKey("dbo.MoviesOwned", "MovieTitlesId", "dbo.MovieTitles");
             DropForeignKey("dbo.Loans", "MoviesOwnedId", "dbo.MoviesOwned");
             DropIndex("dbo.MovieTitles", new[] { "StudiosId" });
             DropIndex("dbo.MoviesOwned", new[] { "StorageTypeId" });
-            DropIndex("dbo.MoviesOwned", new[] { "MovieTitlesId" });
             DropIndex("dbo.MoviesOwned", new[] { "UserId" });
             DropIndex("dbo.Loans", new[] { "MoviesOwnedId" });
             DropTable("dbo.Studios");
+            DropTable("dbo.MovieTitles");
             DropTable("dbo.Users");
             DropTable("dbo.StorageTypes");
-            DropTable("dbo.MovieTitles");
             DropTable("dbo.MoviesOwned");
             DropTable("dbo.Loans");
         }

@@ -13,6 +13,6 @@ namespace Movie.API.Models
 
         public int MovieTitlesId { get; set; }
 
-        public IEnumerable<MovieTitlesModel> MovieTitles { get; set; }
+        public MovieTitles MovieTitle { get; set; }
     }
 }

@@ -7,13 +7,13 @@ namespace Movie.DataModel.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class newInitial : IMigrationMetadata
+    public sealed partial class UPdated : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(newInitial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UPdated));
         
         string IMigrationMetadata.Id
         {
-            get { return "201702030513483_newInitial"; }
+            get { return "201702060400419_UPdated"; }
         }
         
         string IMigrationMetadata.Source

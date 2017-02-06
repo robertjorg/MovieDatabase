@@ -16,20 +16,20 @@ namespace Movie.API.Controllers
     [Route("MovieKeep/Users({userId})/Movies")]
     public class MoviesOwnedController : ApiController
     {
-        private IMovieRepository movieRepository;
+        private IMovieRepository movieRepo;
 
         private ModelFactory modelFactory;
 
-        public MoviesOwnedController(IMovieRepository movieRepository)
+        public MoviesOwnedController(IMovieRepository movieRepo)
         {
-            this.movieRepository = movieRepository;
+            this.movieRepo = movieRepo;
             this.modelFactory = new ModelFactory();
         }
 
         [Route("MovieKeep/Users({userId})/Movies")]
         public IEnumerable<MoviesOwnedModel> Get(int userId)
         {
-            var results = this.movieRepository.GetMoviesForUser(userId).ToList().Select(m => this.modelFactory.Create(m));
+            var results = this.movieRepo.GetMoviesForUser(userId).ToList().Select(m => this.modelFactory.Create(m));
 
             return results;
         }
