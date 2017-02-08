@@ -9,6 +9,7 @@ namespace Movie.API.App_Start
 
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
+    using Movie.API.Services;
     using Movie.DataModel;
 
     using Ninject;
@@ -71,6 +72,7 @@ namespace Movie.API.App_Start
         {
             kernel.Bind<IMovieRepository>().To<MovieRepository>();
             kernel.Bind<MovieContext>().To<MovieContext>();
+            kernel.Bind<IMovieIdentityService>().To<MovieIdentityService>();
         }
     }
 }

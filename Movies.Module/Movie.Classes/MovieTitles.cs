@@ -2,12 +2,15 @@
 {
     using System;
 
+    using Microsoft.Build.Framework;
+
     using Movie.Classes.Interfaces;
 
     public class MovieTitles : IModificationHistory
     {
         public int Id { get; set; }
 
+        [Required]
         public string MovieTitle { get; set; }
 
         public int? StudiosId { get; set; }

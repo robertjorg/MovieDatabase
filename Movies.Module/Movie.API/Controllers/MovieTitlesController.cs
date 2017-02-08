@@ -11,16 +11,10 @@ namespace Movie.API.Controllers
     using Movie.DataModel;
 
     [Route("MovieKeep/MovieTitles")]
-    public class MovieTitlesController : ApiController
+    public class MovieTitlesController : BaseApiController
     {
-        private IMovieRepository movieRepo;
-
-        private ModelFactory modelFactory;
-
-        public MovieTitlesController(IMovieRepository movieRepo)
+        public MovieTitlesController(IMovieRepository movieRepository) : base(movieRepository)
         {
-            this.movieRepo = movieRepo;
-            this.modelFactory = new ModelFactory();
         }
 
         [Route("MovieKeep/MovieTitles")]
@@ -29,7 +23,7 @@ namespace Movie.API.Controllers
             return this.movieRepo.GetMovieTitles().ToList().Select(t => this.modelFactory.Create(t));
         }
 
-        [Route("MovieKeep/Users{(userId)}/MoviesOwned{(moviesOwnedId)}/MovieTitles")]
+        [Route("MovieKeep/Users({userId})/MoviesOwned({moviesOwnedId})/MovieTitles")]
         public IEnumerable<MovieTitlesModel> Get(int userId, int moviesOwnedId)
         {
             return this.movieRepo.GetMovieTitles().ToList().Select(t => this.modelFactory.Create(t));
@@ -41,10 +35,36 @@ namespace Movie.API.Controllers
             return this.modelFactory.Create(this.movieRepo.GetTitleForMovie(id));
         }
 
-        [Route("MovieKeep/User{(userId)}/MoviesOwned{(moviesOwnedId)}/MovieTitles({id})")]
+        [Route("MovieKeep/User({userId})/MoviesOwned({moviesOwnedId})/MovieTitles({id})")]
         public MovieTitlesModel Get(int userId, int moviesOwnedId, int id)
         {
             return this.modelFactory.Create(this.movieRepo.GetTitleForMovie(id));
+        }
+
+        public object Post([FromBody]MovieTitlesModel model)
+        {
+            try
+            {
+                var entity = this.modelFactory.Parse(model);
+
+                if (entity == null)
+                {
+                    return this.Request.CreateErrorResponse(
+                        HttpStatusCode.BadRequest,
+                        "Bad formed JSON request. Movie Title is required");
+                }
+
+                if (this.movieRepo.Add(entity))
+                {
+                    this.movieRepo.GetTitleForMovie(entity.Id);
+                }
+                return this.Request.CreateResponse(HttpStatusCode.Created, this.modelFactory.Create(entity));
+            }
+            catch (Exception ex)
+            {
+                return this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+
         }
     }
 }

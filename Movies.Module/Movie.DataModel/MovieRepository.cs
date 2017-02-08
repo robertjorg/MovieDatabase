@@ -35,7 +35,8 @@ namespace Movie.DataModel
 
         public MoviesOwned GetSingleMovieOwned(int userId, int id)
         {
-            return this.movieContext.MoviesOwned.Where(u => u.UserId == userId && u.Id == id).FirstOrDefault();
+            // return this.movieContext.MoviesOwned.Where(u => u.UserId == userId && u.Id == id).FirstOrDefault();
+            return this.movieContext.MoviesOwned.Include("MovieTitles").Where(u => u.UserId == userId && u.Id == id).FirstOrDefault();
         }
 
         public MovieTitles GetTitleForMovie(int movieTitlesId)
@@ -46,6 +47,25 @@ namespace Movie.DataModel
         public IQueryable<MovieTitles> GetMovieTitles()
         {
             return this.movieContext.MovieTitles;
+        }
+
+        public MovieTitles GetTitleForOwnedMovie(int userId, int moviesOwnedId, int id)
+        {
+            return this.movieContext.MovieTitles.FirstOrDefault(m => m.Id == id);
+        }
+
+        public bool Add(MovieTitles title)
+        {
+            try
+            {
+                this.movieContext.MovieTitles.Add(title);
+            }
+            catch
+            {
+                return false;
+            }
+            this.movieContext.SaveChanges();
+            return true;
         }
     }
 }

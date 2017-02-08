@@ -58,6 +58,10 @@
     <Compile Include="Migrations\201702060400419_UPdated.Designer.cs">
       <DependentUpon>201702060400419_UPdated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702080233376_useraddition.cs" />
+    <Compile Include="Migrations\201702080233376_useraddition.Designer.cs">
+      <DependentUpon>201702080233376_useraddition.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MovieContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,6 +83,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702060400419_UPdated.resx">
       <DependentUpon>201702060400419_UPdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702080233376_useraddition.resx">
+      <DependentUpon>201702080233376_useraddition.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

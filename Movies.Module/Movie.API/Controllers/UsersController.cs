@@ -12,16 +12,10 @@ namespace Movie.API.Controllers
     using Movie.Classes;
 
     [Route("MovieKeep/Users")]
-    public class UsersController : ApiController
+    public class UsersController : BaseApiController
     {
-        private IMovieRepository movieRepo;
-
-        private ModelFactory modelFactory;
-
-        public UsersController(IMovieRepository movieRepo)
+        public UsersController(IMovieRepository movieRepository) : base(movieRepository)
         {
-            this.movieRepo = movieRepo;
-            this.modelFactory = new ModelFactory();
         }
 
         public IEnumerable<UserModel> Get()

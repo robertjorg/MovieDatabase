@@ -18,8 +18,15 @@ namespace Movie.DataModel
 
         IQueryable<MoviesOwned> GetMoviesForUser(int userId);
 
+        MoviesOwned GetSingleMovieOwned(int userId, int id);
+
         MovieTitles GetTitleForMovie(int movieTitlesId);
 
         IQueryable<MovieTitles> GetMovieTitles();
+
+        MovieTitles GetTitleForOwnedMovie(int userId, int moviesOwnedId, int id);
+
+        // Inserts
+        bool Add(MovieTitles title);
     }
 }

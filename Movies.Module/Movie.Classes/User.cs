@@ -17,6 +17,9 @@
         [Required]
         public string LastName { get; set; }
 
+        [Required]
+        public string UserName { get; set; }
+
         public DateTime OpentDt { get; set; }
 
         public DateTime LastLoginDt { get; set; }

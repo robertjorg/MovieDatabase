@@ -4,30 +4,34 @@ using System.Linq;
 using System.Web;
 
 using Movie.API.Models;
-using Movie.Classes;
 
 namespace Movie.API.Models
 {
-    using Movie.Classes;
     using System.Net.Http;
     using System.Web.Http.Routing;
+    using Movie.Classes;
+    using Movie.DataModel;
 
     public class ModelFactory
     {
-        //private UrlHelper urlHelper;
+        private UrlHelper urlHelper;
 
-        //public ModelFactory(HttpRequestMessage request)
-        //{
-        //    this.urlHelper = new UrlHelper(request);
-        //}
+        private IMovieRepository movieRepository;
+
+        public ModelFactory(HttpRequestMessage request, IMovieRepository movieRepository)
+        {
+            this.urlHelper = new UrlHelper(request);
+            this.movieRepository = movieRepository;
+        }
 
         public UserModel Create(User user)
         {
             return new UserModel()
             {
+                Url = this.urlHelper.Link("Users", new { id = user.Id }), // do I want to have the URL for all of the endpoints?
                 Id = user.Id,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
+                FullName = user.FirstName + " " + user.LastName,
+                UserName = user.UserName,
                 LastLoginDt = user.LastLoginDt,
                 OpenDt = user.OpentDt
             };
@@ -39,7 +43,8 @@ namespace Movie.API.Models
             {
                 Id = moviesOwned.Id,
                 MovieTitlesId = moviesOwned.MovieTitlesId,
-                MovieTitle = new MovieTitles()
+                MovieTitle = moviesOwned.MovieTitles.MovieTitle,
+                MovieDescription = moviesOwned.MovieTitles.MovieDesc
             };
         }
 
@@ -53,6 +58,46 @@ namespace Movie.API.Models
                 ReleaseDate = movieTitles.ReleaseDt,
                 ImdbUrl = movieTitles.ImdbUrl
             };
+        }
+
+        public MovieTitles Parse(MovieTitlesModel model)
+        {
+            try
+            {
+                var title = new MovieTitles();
+
+                if (model.MovieTitle != null)
+                {
+                    title.MovieTitle = model.MovieTitle;
+                    if (model.MovieDesc != null)
+                    {
+                        title.MovieDesc = model.MovieDesc;
+                    }
+
+                    if (model.ImdbUrl != null)
+                    {
+                        title.ImdbUrl = model.ImdbUrl;
+                    }
+
+                    if (model.ReleaseDate != null)
+                    {
+                        title.ReleaseDt = model.ReleaseDate;
+                    }
+
+                    title.DateAdded = DateTime.Now;
+                    title.DateModified = DateTime.Now;
+
+                    return title;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

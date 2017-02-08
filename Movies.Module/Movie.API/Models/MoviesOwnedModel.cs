@@ -13,6 +13,10 @@ namespace Movie.API.Models
 
         public int MovieTitlesId { get; set; }
 
-        public MovieTitles MovieTitle { get; set; }
+        public string MovieTitle { get; set; }
+
+        public string MovieDescription { get; set; }
+
+        public string MovieStorageTypeName { get; set; }
     }
 }
