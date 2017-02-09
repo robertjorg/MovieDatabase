@@ -28,5 +28,11 @@ namespace Movie.DataModel
 
         // Inserts
         bool Add(MovieTitles title);
+
+        // Deletes
+        bool DeleteMovieTitle(int id);
+
+        // Save
+        bool SaveAll();
     }
 }

@@ -99,5 +99,44 @@ namespace Movie.API.Models
                 return null;
             }
         }
+
+        public MovieTitles ParsePatch(MovieTitlesModel model)
+        {
+            try
+            {
+                var title = new MovieTitles();
+
+                if (model.MovieTitle != null)
+                {
+                    title.MovieTitle = model.MovieTitle;
+                    if (model.MovieDesc != null)
+                    {
+                        title.MovieDesc = model.MovieDesc;
+                    }
+
+                    if (model.ImdbUrl != null)
+                    {
+                        title.ImdbUrl = model.ImdbUrl;
+                    }
+
+                    if (model.ReleaseDate != null)
+                    {
+                        title.ReleaseDt = model.ReleaseDate;
+                    }
+
+                    title.DateModified = DateTime.Now;
+
+                    return title;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

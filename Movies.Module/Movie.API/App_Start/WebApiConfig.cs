@@ -33,7 +33,7 @@ namespace Movie.API
                 defaults: new { controller = "MoviesOwned", id = RouteParameter.Optional });
 
             config.Routes.MapHttpRoute(
-                name: "MovieTites",
+                name: "MovieTitles",
                 routeTemplate: "MovieKeep/MovieTitles({id})",
                 defaults: new { controller = "MovieTitles", id = RouteParameter.Optional });
 

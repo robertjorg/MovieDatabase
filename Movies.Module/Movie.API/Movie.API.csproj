@@ -277,6 +277,7 @@
     <Compile Include="Services\IMovieIdentityService.cs" />
     <Compile Include="Services\MovieIdentityService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Validations\Validations.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Movie.DataModel
 {
+    using System.Data.Entity;
     using Movie.Classes;
+    
 
     public class MovieRepository : IMovieRepository
     {
@@ -64,8 +66,25 @@ namespace Movie.DataModel
             {
                 return false;
             }
-            this.movieContext.SaveChanges();
+
             return true;
+        }
+
+        public bool DeleteMovieTitle(int id)
+        {
+            var titleToDelete = this.movieContext.MovieTitles.FirstOrDefault(t => t.Id == id);
+            if (titleToDelete != null)
+            {
+                this.movieContext.MovieTitles.Remove(titleToDelete);
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool SaveAll()
+        {
+            return this.movieContext.SaveChanges() > 0;
         }
     }
 }
