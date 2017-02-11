@@ -45,5 +45,20 @@ namespace Movie.API.Controllers
 
             return this.Request.CreateResponse(HttpStatusCode.OK, this.modelFactory.Create(this.movieRepo.GetSingleMovieOwned(userId, id)));
         }
+
+        [Route("MovieKeep/Users({userId})/MoviesOwned")]
+        public HttpResponseMessage Post(int userId, [FromBody] MoviesOwnedModel moviesOwned)
+        {
+            try
+            {
+                var entity = this.modelFactory.Parse(moviesOwned); // need to fix this post
+
+                return this.Request.CreateResponse(HttpStatusCode.NoContent, this.modelFactory.Create(entity));
+            }
+            catch (Exception e)
+            {
+                return this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, e);
+            }
+        }
     }
 }

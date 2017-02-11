@@ -30,10 +30,11 @@ namespace Movie.API.Models
             {
                 Url = this.urlHelper.Link("Users", new { id = user.Id }), // do I want to have the URL for all of the endpoints?
                 Id = user.Id,
-                FullName = user.FirstName + " " + user.LastName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
                 UserName = user.UserName,
                 LastLoginDt = user.LastLoginDt,
-                OpenDt = user.OpentDt
+                OpenDt = user.DateAdded
             };
         }
 
@@ -57,6 +58,16 @@ namespace Movie.API.Models
                 MovieDesc = movieTitles.MovieDesc,
                 ReleaseDate = movieTitles.ReleaseDt,
                 ImdbUrl = movieTitles.ImdbUrl
+            };
+        }
+
+        public StorageTypeModel Create(StorageType storageType)
+        {
+            return new StorageTypeModel()
+            {
+                Id = storageType.Id,
+                StorageName = storageType.StorageName,
+                StorageUrl = storageType.Url
             };
         }
 
@@ -132,6 +143,102 @@ namespace Movie.API.Models
                 {
                     return null;
                 }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public User Parse(UserModel model)
+        {
+            try
+            {
+                var user = new User();
+
+                if (model.LastName != null && model.FirstName != null && model.UserName != null)
+                {
+                    user.LastName = model.LastName;
+                    user.FirstName = model.FirstName;
+                    user.UserName = model.UserName;
+                    user.LastLoginDt = DateTime.Now;
+                    user.DateAdded = DateTime.Now;
+                    user.DateModified = DateTime.Now;
+
+                    return user;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public User ParsePatch(UserModel model)
+        {
+            try
+            {
+                var user = new User();
+
+                if (model.LastName != null)
+                {
+                    user.LastName = model.LastName;
+                }
+
+                if (model.FirstName != null)
+                {
+                    user.FirstName = model.FirstName;
+                }
+
+                if (model.UserName != null)
+                {
+                    user.UserName = model.UserName;
+                }
+
+                user.DateModified = DateTime.Now;
+                
+                return user;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public MoviesOwned Parse(MoviesOwnedModel model)
+        {
+            try
+            {
+                var moviesOwned = new MoviesOwned();
+
+
+                if (model.MovieTitle == null)
+                {
+                    return null;
+                }
+
+                var movieTitleId =
+                    this.movieRepository.GetMovieTitles().FirstOrDefault(t => t.MovieTitle == model.MovieTitle);
+                if (movieTitleId != null)
+                {
+                    moviesOwned.MovieTitlesId = movieTitleId.Id;
+                }
+
+                if (model.MovieStorageTypeName == null)
+                {
+                    return null;
+                }
+
+
+                moviesOwned.MovieTitles = this.movieRepository.GetMovieTitles().FirstOrDefault(t => t.MovieTitle == model.MovieTitle);
+                moviesOwned.DateAdded = DateTime.Now;
+                moviesOwned.DateModified = DateTime.Now;
+
+                return moviesOwned;
             }
             catch
             {

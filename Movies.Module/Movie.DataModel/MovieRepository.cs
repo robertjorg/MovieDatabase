@@ -56,11 +56,35 @@ namespace Movie.DataModel
             return this.movieContext.MovieTitles.FirstOrDefault(m => m.Id == id);
         }
 
+        public IQueryable<StorageType> GetStorageType()
+        {
+            return this.movieContext.StorageType;
+        }
+
+        public StorageType GetSingleStorageType(int id)
+        {
+            return this.movieContext.StorageType.FirstOrDefault(s => s.Id == id);
+        }
+
         public bool Add(MovieTitles title)
         {
             try
             {
                 this.movieContext.MovieTitles.Add(title);
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool Add(User user)
+        {
+            try
+            {
+                this.movieContext.User.Add(user);
             }
             catch
             {
@@ -76,6 +100,18 @@ namespace Movie.DataModel
             if (titleToDelete != null)
             {
                 this.movieContext.MovieTitles.Remove(titleToDelete);
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool DeleteUser(int id)
+        {
+            var userToDelete = this.movieContext.User.FirstOrDefault(t => t.Id == id);
+            if (userToDelete != null)
+            {
+                this.movieContext.User.Remove(userToDelete);
                 return true;
             }
 

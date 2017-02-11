@@ -33,5 +33,21 @@ namespace Movie.API.Validations
             var titleCount = this.movieRepository.GetMovieTitles().Count(mt => mt.MovieTitle == movieTitle) + 1;
             return titleCount <= 1;
         }
+
+        public bool CheckUserName(string userName)
+        {
+            var checkUserName = this.movieRepository.GetAllUsers().ToList().Any(n => n.UserName == userName);
+            if (!checkUserName)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool CheckUserNamePatch(string userName)
+        {
+            var userNameCount = this.movieRepository.GetAllUsers().Count(u => u.UserName == userName) + 1;
+            return userNameCount <= 1;
+        }
     }
 }

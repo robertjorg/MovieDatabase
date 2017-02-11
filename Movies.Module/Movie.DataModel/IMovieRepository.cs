@@ -26,13 +26,22 @@ namespace Movie.DataModel
 
         MovieTitles GetTitleForOwnedMovie(int userId, int moviesOwnedId, int id);
 
+        IQueryable<StorageType> GetStorageType();
+
+        StorageType GetSingleStorageType(int id);
+
         // Inserts
         bool Add(MovieTitles title);
+
+        bool Add(User user);
 
         // Deletes
         bool DeleteMovieTitle(int id);
 
+        bool DeleteUser(int id);
+
         // Save
         bool SaveAll();
+
     }
 }
