@@ -16,9 +16,9 @@
         public string Url { get; set; }
 
         // will this be the place to save login info if I can get APis?
-        public DateTime DateModified { get; set; }
+        public DateTime? DateModified { get; set; }
 
-        public DateTime DateAdded { get; set; }
+        public DateTime? DateAdded { get; set; }
 
         public bool IsDirty { get; set; }
     }

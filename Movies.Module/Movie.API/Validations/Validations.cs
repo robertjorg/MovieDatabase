@@ -28,9 +28,19 @@ namespace Movie.API.Validations
             return false;
         }
 
-        public bool CheckMovieTitlesPatch(string movieTitle)
+        public bool CheckMovieTitlesPatch(string movieTitle, string sentType = "")
         {
-            var titleCount = this.movieRepository.GetMovieTitles().Count(mt => mt.MovieTitle == movieTitle) + 1;
+            int titleCount;
+
+            if (sentType == "patch")
+            {
+                titleCount = this.movieRepository.GetMovieTitles().Count(mt => mt.MovieTitle == movieTitle);
+            }
+            else
+            {
+                titleCount = this.movieRepository.GetMovieTitles().Count(mt => mt.MovieTitle == movieTitle) + 1;
+            }
+            
             return titleCount <= 1;
         }
 
@@ -48,6 +58,33 @@ namespace Movie.API.Validations
         {
             var userNameCount = this.movieRepository.GetAllUsers().Count(u => u.UserName == userName) + 1;
             return userNameCount <= 1;
+        }
+
+        public string StorageTypeCheck(string storageName, string url)
+        {
+            string returnValue = string.Empty;
+            var storageNameCount = this.movieRepository.GetStorageType().Count(sn => sn.StorageName == storageName) + 1;
+            var storageUrlCount = this.movieRepository.GetStorageType().Count(su => su.Url == url) + 1;
+
+            if (storageNameCount > 1)
+            {
+                returnValue = "Storage name already exists.";
+            }
+
+            if (storageUrlCount > 1)
+            {
+                if (returnValue != string.Empty)
+                {
+                    returnValue = returnValue + " Storage URL already exists.";
+                }
+                else
+                {
+                    returnValue = "Storage URL already exists.";
+                }
+                
+            }
+
+            return returnValue;
         }
     }
 }

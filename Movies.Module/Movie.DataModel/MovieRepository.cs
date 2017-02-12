@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 namespace Movie.DataModel
 {
     using System.Data.Entity;
+    using System.Data.Entity.Migrations;
+
     using Movie.Classes;
     
 
@@ -94,6 +96,19 @@ namespace Movie.DataModel
             return true;
         }
 
+        public bool Add(StorageType storageType)
+        {
+            try
+            {
+                this.movieContext.StorageType.Add(storageType);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
         public bool DeleteMovieTitle(int id)
         {
             var titleToDelete = this.movieContext.MovieTitles.FirstOrDefault(t => t.Id == id);
@@ -118,9 +133,35 @@ namespace Movie.DataModel
             return false;
         }
 
+        public bool DeleteStorageType(int id)
+        {
+            var storageToDelete = this.movieContext.StorageType.FirstOrDefault(s => s.Id == id);
+            if (storageToDelete != null)
+            {
+                this.movieContext.StorageType.Remove(storageToDelete);
+                return true;
+            }
+
+            return false;
+        }
+
         public bool SaveAll()
         {
             return this.movieContext.SaveChanges() > 0;
+        }
+
+        public bool UpdateMovieTitle(MovieTitles movieTitles)
+        {
+            var dbset = this.movieContext.MovieTitles;
+            var context = this.movieContext.Entry(movieTitles);
+            if (context.State == EntityState.Detached)
+            {
+                dbset.Attach(movieTitles);
+            }
+
+            context.State = EntityState.Modified;
+
+            return true;
         }
     }
 }

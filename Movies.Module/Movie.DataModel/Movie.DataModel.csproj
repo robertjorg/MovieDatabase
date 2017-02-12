@@ -66,6 +66,10 @@
     <Compile Include="Migrations\201702100424193_RemoveRedundantOnUser.Designer.cs">
       <DependentUpon>201702100424193_RemoveRedundantOnUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702120445032_nullableDateTime.cs" />
+    <Compile Include="Migrations\201702120445032_nullableDateTime.Designer.cs">
+      <DependentUpon>201702120445032_nullableDateTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MovieContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,6 +97,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702100424193_RemoveRedundantOnUser.resx">
       <DependentUpon>201702100424193_RemoveRedundantOnUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702120445032_nullableDateTime.resx">
+      <DependentUpon>201702120445032_nullableDateTime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

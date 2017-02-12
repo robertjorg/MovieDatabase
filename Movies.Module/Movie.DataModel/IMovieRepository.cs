@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Movie.DataModel
 {
+    using System.Data.Entity;
+    using System.Data.Entity.Migrations;
     using System.Linq;
 
     using Movie.Classes;
@@ -35,13 +37,20 @@ namespace Movie.DataModel
 
         bool Add(User user);
 
+        bool Add(StorageType storageType);
+
         // Deletes
         bool DeleteMovieTitle(int id);
 
         bool DeleteUser(int id);
 
+        bool DeleteStorageType(int id);
+
         // Save
         bool SaveAll();
 
+        // Update
+
+        bool UpdateMovieTitle(MovieTitles movieTitles);
     }
 }

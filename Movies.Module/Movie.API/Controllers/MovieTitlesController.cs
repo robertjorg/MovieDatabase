@@ -43,13 +43,13 @@ namespace Movie.API.Controllers
 
             return
                 new
-                    {
-                        Results = result,
-                        TotalCount = totalCount,
-                        TotalPages = totalPages,
-                        PrevPageUrl = prevUrl,
-                        NextPageUrl = nextUrl
-                    };
+                {
+                    Results = result,
+                    TotalCount = totalCount,
+                    TotalPages = totalPages,
+                    PrevPageUrl = prevUrl,
+                    NextPageUrl = nextUrl
+                };
         }
 
         [Route("MovieKeep/Users({userId})/MoviesOwned({moviesOwnedId})/MovieTitles")]
@@ -150,14 +150,14 @@ namespace Movie.API.Controllers
                     return this.Request.CreateResponse(HttpStatusCode.BadRequest);
                 }
 
-                if (!this.Validate.CheckMovieTitlesPatch(model.MovieTitle))
+                if (!this.Validate.CheckMovieTitlesPatch(model.MovieTitle, "patch"))
                 {
                     return this.Request.CreateErrorResponse(
                         HttpStatusCode.BadRequest,
                         "A movie title with a differnt ID already has contains that movie title");
                 }
 
-                if (this.movieRepo.SaveAll())
+                if (this.movieRepo.UpdateMovieTitle(parsedMovieValue) && this.movieRepo.SaveAll())
                 {
                     return this.Request.CreateResponse(HttpStatusCode.OK);
                 }

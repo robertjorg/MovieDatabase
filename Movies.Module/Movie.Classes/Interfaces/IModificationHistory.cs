@@ -8,9 +8,9 @@ namespace Movie.Classes.Interfaces
 {
     public interface IModificationHistory
     {
-        DateTime DateModified { get; set; }
+        DateTime? DateModified { get; set; }
 
-        DateTime DateAdded { get; set; }
+        DateTime? DateAdded { get; set; }
 
         bool IsDirty { get; set; }
     }

@@ -17,8 +17,8 @@ namespace Movie.API.Models
 
         public string UserName { get; set; }
 
-        public DateTime OpenDt { get; set; }
+        public DateTime? OpenDt { get; set; }
 
-        public DateTime LastLoginDt { get; set; }
+        public DateTime? LastLoginDt { get; set; }
     }
 }

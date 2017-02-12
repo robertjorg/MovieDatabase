@@ -209,6 +209,31 @@ namespace Movie.API.Models
             }
         }
 
+        public StorageType ParsePatch(StorageTypeModel model)
+        {
+            try
+            {
+                var storageType = new StorageType();
+
+                if (model.StorageName != null)
+                {
+                    storageType.StorageName = model.StorageName;
+                }
+                if (model.StorageUrl != null)
+                {
+                    storageType.Url = model.StorageUrl;
+                }
+
+                storageType.DateModified = DateTime.Now;
+
+                return storageType;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public MoviesOwned Parse(MoviesOwnedModel model)
         {
             try
@@ -239,6 +264,30 @@ namespace Movie.API.Models
                 moviesOwned.DateModified = DateTime.Now;
 
                 return moviesOwned;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public StorageType Parse(StorageTypeModel model)
+        {
+            try
+            {
+                var storageType = new StorageType();
+
+                if (model.StorageName == null || model.StorageUrl == null)
+                {
+                    return null;
+                }
+
+                storageType.StorageName = model.StorageName;
+                storageType.Url = model.StorageUrl;
+                storageType.DateAdded = DateTime.Now;
+                storageType.DateModified = DateTime.Now;
+
+                return storageType;
             }
             catch
             {

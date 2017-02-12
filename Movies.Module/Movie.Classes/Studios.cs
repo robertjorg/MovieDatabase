@@ -16,9 +16,9 @@
 
         public List<MovieTitles> Titles { get; set; }
 
-        public DateTime DateModified { get; set; }
+        public DateTime? DateModified { get; set; }
 
-        public DateTime DateAdded { get; set; }
+        public DateTime? DateAdded { get; set; }
 
         public bool IsDirty { get; set; }
     }
