@@ -68,6 +68,16 @@ namespace Movie.DataModel
             return this.movieContext.StorageType.FirstOrDefault(s => s.Id == id);
         }
 
+        public IEnumerable<Studios> GetStudios()
+        {
+            return this.movieContext.Studios;
+        }
+
+        public Studios GetSingleStudio(int id)
+        {
+            return this.movieContext.Studios.FirstOrDefault(s => s.Id == id);
+        }
+
         public bool Add(MovieTitles title)
         {
             try
@@ -109,6 +119,19 @@ namespace Movie.DataModel
             return true;
         }
 
+        public bool Add(Studios studios)
+        {
+            try
+            {
+                this.movieContext.Studios.Add(studios);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
+
         public bool DeleteMovieTitle(int id)
         {
             var titleToDelete = this.movieContext.MovieTitles.FirstOrDefault(t => t.Id == id);
@@ -139,6 +162,18 @@ namespace Movie.DataModel
             if (storageToDelete != null)
             {
                 this.movieContext.StorageType.Remove(storageToDelete);
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool DeleteStudio(int id)
+        {
+            var studioToDelete = this.movieContext.Studios.FirstOrDefault(s => s.Id == id);
+            if (studioToDelete != null)
+            {
+                this.movieContext.Studios.Remove(studioToDelete);
                 return true;
             }
 

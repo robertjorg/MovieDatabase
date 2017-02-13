@@ -71,6 +71,11 @@ namespace Movie.API.Models
             };
         }
 
+        public StudiosModel Create(Studios studios)
+        {
+            return new StudiosModel() { Id = studios.Id, StudioName = studios.StudioName };
+        }
+
         public MovieTitles Parse(MovieTitlesModel model)
         {
             try
@@ -288,6 +293,29 @@ namespace Movie.API.Models
                 storageType.DateModified = DateTime.Now;
 
                 return storageType;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public Studios Parse(StudiosModel model)
+        {
+            try
+            {
+                var studio = new Studios();
+
+                if (model.StudioName == null)
+                {
+                    return null;
+                }
+
+                studio.StudioName = model.StudioName;
+                studio.DateAdded = DateTime.Now;
+                studio.DateModified = DateTime.Now;
+
+                return studio;
             }
             catch
             {

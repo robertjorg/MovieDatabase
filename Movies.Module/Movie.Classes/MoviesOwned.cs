@@ -22,7 +22,7 @@
 
         public StorageType StorageType { get; set; }
 
-        public int? StorageTypeId { get; set; }
+        public int StorageTypeId { get; set; }
 
         public List<Loan> Loan { get; set; }
 

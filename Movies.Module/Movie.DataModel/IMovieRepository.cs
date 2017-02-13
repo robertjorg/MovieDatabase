@@ -32,6 +32,10 @@ namespace Movie.DataModel
 
         StorageType GetSingleStorageType(int id);
 
+        IEnumerable<Studios> GetStudios();
+
+        Studios GetSingleStudio(int id);
+
         // Inserts
         bool Add(MovieTitles title);
 
@@ -39,12 +43,16 @@ namespace Movie.DataModel
 
         bool Add(StorageType storageType);
 
+        bool Add(Studios studio);
+
         // Deletes
         bool DeleteMovieTitle(int id);
 
         bool DeleteUser(int id);
 
         bool DeleteStorageType(int id);
+
+        bool DeleteStudio(int id);
 
         // Save
         bool SaveAll();

@@ -86,5 +86,18 @@ namespace Movie.API.Validations
 
             return returnValue;
         }
+
+        public string StudioNameCheck(string studioName)
+        {
+            string returnValue = string.Empty;
+            var studioCount = this.movieRepository.GetStudios().Count(s => s.StudioName == studioName) + 1;
+
+            if (studioCount > 1)
+            {
+                returnValue = "Studio with the same name already exists";
+            }
+
+            return returnValue;
+        }
     }
 }

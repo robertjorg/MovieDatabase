@@ -70,6 +70,10 @@
     <Compile Include="Migrations\201702120445032_nullableDateTime.Designer.cs">
       <DependentUpon>201702120445032_nullableDateTime.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702130327343_moreUpdates.cs" />
+    <Compile Include="Migrations\201702130327343_moreUpdates.Designer.cs">
+      <DependentUpon>201702130327343_moreUpdates.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MovieContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702120445032_nullableDateTime.resx">
       <DependentUpon>201702120445032_nullableDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702130327343_moreUpdates.resx">
+      <DependentUpon>201702130327343_moreUpdates.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
