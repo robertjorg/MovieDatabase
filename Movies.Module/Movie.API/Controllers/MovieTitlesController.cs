@@ -144,7 +144,7 @@ namespace Movie.API.Controllers
                     return this.Request.CreateResponse(HttpStatusCode.NotFound);
                 }
 
-                var parsedMovieValue = this.modelFactory.ParsePatch(model);
+                var parsedMovieValue = this.modelFactory.ParsePatch(model, id);
                 if (parsedMovieValue == null)
                 {
                     return this.Request.CreateResponse(HttpStatusCode.BadRequest);

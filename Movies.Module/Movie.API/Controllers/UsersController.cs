@@ -105,7 +105,7 @@ namespace Movie.API.Controllers
                     return this.Request.CreateResponse(HttpStatusCode.NotFound);
                 }
 
-                var parsedUserValue = this.modelFactory.ParsePatch(model);
+                var parsedUserValue = this.modelFactory.ParsePatch(model, id);
                 if (parsedUserValue == null)
                 {
                     return this.Request.CreateResponse(HttpStatusCode.BadRequest);

@@ -116,11 +116,13 @@ namespace Movie.API.Models
             }
         }
 
-        public MovieTitles ParsePatch(MovieTitlesModel model)
+        public MovieTitles ParsePatch(MovieTitlesModel model, int id)
         {
             try
             {
-                var title = new MovieTitles();
+                MovieTitles title;
+
+                title = this.movieRepository.GetTitleForMovie(id);
 
                 if (model.MovieTitle != null)
                 {
@@ -183,11 +185,13 @@ namespace Movie.API.Models
             }
         }
 
-        public User ParsePatch(UserModel model)
+        public User ParsePatch(UserModel model, int id)
         {
             try
             {
-                var user = new User();
+                User user;
+
+                user = this.movieRepository.GetSingleUser(id);
 
                 if (model.LastName != null)
                 {
@@ -203,7 +207,7 @@ namespace Movie.API.Models
                 {
                     user.UserName = model.UserName;
                 }
-
+;
                 user.DateModified = DateTime.Now;
                 
                 return user;
