@@ -132,6 +132,19 @@ namespace Movie.DataModel
             return true;
         }
 
+        public bool Add(MoviesOwned moviesOwned)
+        {
+            try
+            {
+                this.movieContext.MoviesOwned.Add(moviesOwned);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
+
         public bool DeleteMovieTitle(int id)
         {
             var titleToDelete = this.movieContext.MovieTitles.FirstOrDefault(t => t.Id == id);
@@ -175,6 +188,19 @@ namespace Movie.DataModel
             {
                 this.movieContext.Studios.Remove(studioToDelete);
                 return true;
+            }
+
+            return false;
+        }
+
+        public bool DeleteMovieOwned(int userId, int id)
+        {
+            var userMovies = this.movieContext.User.FirstOrDefault(u => u.Id == userId);
+            if (userMovies != null)
+            {
+                var movieOwnedToDelete =
+                    userMovies.MoviesOwned.FirstOrDefault(m => m.Id == id);
+                this.movieContext.MoviesOwned.Remove(movieOwnedToDelete);
             }
 
             return false;

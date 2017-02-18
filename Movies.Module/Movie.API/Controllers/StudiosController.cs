@@ -89,5 +89,42 @@ namespace Movie.API.Controllers
                 return this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
+
+        [Route("MovieKeep/Studios({id})")]
+        public HttpResponseMessage Patch(int id, [FromBody] StudiosModel model)
+        {
+            try
+            {
+                var entity = this.movieRepo.GetSingleStudio(id);
+                if (entity == null)
+                {
+                    return this.Request.CreateResponse(HttpStatusCode.NotFound);
+                }
+
+                var parsedUserValue = this.modelFactory.ParsePatch(model, id);
+                if (parsedUserValue == null)
+                {
+                    return this.Request.CreateResponse(HttpStatusCode.BadRequest);
+                }
+
+                var studioCheck = this.Validate.StudioNameCheck(entity.StudioName);
+
+                if (studioCheck != string.Empty)
+                {
+                    return this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, studioCheck);
+                }
+
+                if (this.movieRepo.SaveAll())
+                {
+                    return this.Request.CreateResponse(HttpStatusCode.OK);
+                }
+
+                return this.Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+            catch (Exception ex)
+            {
+                return this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+        }
     }
 }

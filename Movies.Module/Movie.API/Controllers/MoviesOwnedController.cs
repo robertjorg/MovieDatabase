@@ -51,9 +51,82 @@ namespace Movie.API.Controllers
         {
             try
             {
-                var entity = this.modelFactory.Parse(moviesOwned); // need to fix this post
+                var entity = this.modelFactory.Parse(moviesOwned, userId);
 
-                return this.Request.CreateResponse(HttpStatusCode.NoContent, this.modelFactory.Create(entity));
+                if (entity == null)
+                {
+                    return this.Request.CreateErrorResponse(
+                        HttpStatusCode.BadRequest,
+                        "Bad formed JSON request.");
+                }
+
+                var alreadyOwned = this.Validate.CheckMoviesOwned(userId, entity.MovieTitlesId);
+
+                if (alreadyOwned != string.Empty)
+                {
+                    return this.Request.CreateErrorResponse(HttpStatusCode.Conflict, alreadyOwned);
+                }
+
+                if (this.movieRepo.Add(entity) && this.movieRepo.SaveAll())
+                {
+                    return this.Request.CreateResponse(HttpStatusCode.NoContent, this.modelFactory.Create(entity));
+                }
+
+                return this.Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+            catch (Exception e)
+            {
+                return this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, e);
+            }
+        }
+
+        [Route("MovieKeep/Users({userId})/MoviesOwned({id})")]
+        public HttpResponseMessage Delete(int userId, int id)
+        {
+            try
+            {
+                var entity = this.movieRepo.GetSingleMovieOwned(userId, id);
+                if (entity == null)
+                {
+                    return this.Request.CreateResponse(HttpStatusCode.NotFound);
+                }
+
+                if (this.movieRepo.DeleteMovieOwned(userId, id) && this.movieRepo.SaveAll())
+                {
+                    return this.Request.CreateResponse(HttpStatusCode.OK);
+                }
+
+                return this.Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+            catch (Exception e)
+            {
+                return this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, e);
+            }
+        }
+
+        [Route("MovieKeep/Users({userId})/MoviesOwned({id})")]
+        public HttpResponseMessage Patch(int userId, int id, [FromBody] MoviesOwnedModel model)
+        {
+            try
+            {
+                var entity = this.movieRepo.GetSingleMovieOwned(userId, id);
+                if (entity == null)
+                {
+                    return this.Request.CreateResponse(HttpStatusCode.NotFound);
+                }
+
+                var parsedMovieOwnedValue = this.modelFactory.ParsePatch(model, userId, id);
+                if (parsedMovieOwnedValue == null)
+                {
+                    return this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Only storage type may be patched on movies owned.");
+                }
+
+                if (this.movieRepo.SaveAll())
+                {
+                    return this.Request.CreateResponse(HttpStatusCode.OK, this.modelFactory.Create(parsedMovieOwnedValue));
+                }
+
+                return this.Request.CreateResponse(HttpStatusCode.BadRequest);
             }
             catch (Exception e)
             {

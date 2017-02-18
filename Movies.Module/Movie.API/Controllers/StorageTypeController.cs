@@ -119,7 +119,7 @@ namespace Movie.API.Controllers
                     return this.Request.CreateResponse(HttpStatusCode.NotFound);
                 }
 
-                var parsedStorage = this.modelFactory.ParsePatch(model);
+                var parsedStorage = this.modelFactory.ParsePatch(model, id);
                 if (parsedStorage == null)
                 {
                     return this.Request.CreateResponse(HttpStatusCode.BadRequest);

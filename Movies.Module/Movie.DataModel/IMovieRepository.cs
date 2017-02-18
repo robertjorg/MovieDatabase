@@ -45,6 +45,8 @@ namespace Movie.DataModel
 
         bool Add(Studios studio);
 
+        bool Add(MoviesOwned moviesOwned);
+
         // Deletes
         bool DeleteMovieTitle(int id);
 
@@ -53,6 +55,8 @@ namespace Movie.DataModel
         bool DeleteStorageType(int id);
 
         bool DeleteStudio(int id);
+
+        bool DeleteMovieOwned(int userId, int id);
 
         // Save
         bool SaveAll();

@@ -45,7 +45,8 @@ namespace Movie.API.Models
                 Id = moviesOwned.Id,
                 MovieTitlesId = moviesOwned.MovieTitlesId,
                 MovieTitle = moviesOwned.MovieTitles.MovieTitle,
-                MovieDescription = moviesOwned.MovieTitles.MovieDesc
+                MovieDescription = moviesOwned.MovieTitles.MovieDesc,
+                MovieStorageTypeName = moviesOwned.StorageType.StorageName
             };
         }
 
@@ -120,9 +121,7 @@ namespace Movie.API.Models
         {
             try
             {
-                MovieTitles title;
-
-                title = this.movieRepository.GetTitleForMovie(id);
+                MovieTitles title = this.movieRepository.GetTitleForMovie(id);
 
                 if (model.MovieTitle != null)
                 {
@@ -152,6 +151,32 @@ namespace Movie.API.Models
                 }
             }
             catch
+            {
+                return null;
+            }
+        }
+
+        public MoviesOwned ParsePatch(MoviesOwnedModel model, int userId, int id)
+        {
+            try
+            {
+                MoviesOwned owned = this.movieRepository.GetSingleMovieOwned(userId, id);
+
+                if (model.MovieStorageTypeName != null)
+                {
+                    var checkStorage = this.movieRepository.GetStorageType()
+                        .FirstOrDefault(s => s.StorageName == model.MovieStorageTypeName);
+                    if (checkStorage != null)
+                    {
+                        owned.StorageTypeId = checkStorage.Id;
+                    }
+                }
+
+                owned.DateModified = DateTime.Now;
+
+                return owned;
+            }
+            catch (Exception)
             {
                 return null;
             }
@@ -189,9 +214,7 @@ namespace Movie.API.Models
         {
             try
             {
-                User user;
-
-                user = this.movieRepository.GetSingleUser(id);
+                User user = this.movieRepository.GetSingleUser(id);
 
                 if (model.LastName != null)
                 {
@@ -218,11 +241,11 @@ namespace Movie.API.Models
             }
         }
 
-        public StorageType ParsePatch(StorageTypeModel model)
+        public StorageType ParsePatch(StorageTypeModel model, int id)
         {
             try
             {
-                var storageType = new StorageType();
+                StorageType storageType = this.movieRepository.GetSingleStorageType(id);
 
                 if (model.StorageName != null)
                 {
@@ -243,12 +266,11 @@ namespace Movie.API.Models
             }
         }
 
-        public MoviesOwned Parse(MoviesOwnedModel model)
+        public MoviesOwned Parse(MoviesOwnedModel model, int userId)
         {
             try
             {
-                var moviesOwned = new MoviesOwned();
-
+                var moviesOwned = new MoviesOwned { UserId = userId };
 
                 if (model.MovieTitle == null)
                 {
@@ -262,9 +284,11 @@ namespace Movie.API.Models
                     moviesOwned.MovieTitlesId = movieTitleId.Id;
                 }
 
-                if (model.MovieStorageTypeName == null)
+                var storageType = this.movieRepository.GetStorageType().FirstOrDefault(s => s.StorageName == model.MovieStorageTypeName);
+
+                if (storageType != null)
                 {
-                    return null;
+                    moviesOwned.StorageTypeId = storageType.Id;
                 }
 
 
@@ -317,6 +341,27 @@ namespace Movie.API.Models
 
                 studio.StudioName = model.StudioName;
                 studio.DateAdded = DateTime.Now;
+                studio.DateModified = DateTime.Now;
+
+                return studio;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public Studios ParsePatch(StudiosModel model, int id)
+        {
+            try
+            {
+                Studios studio = this.movieRepository.GetSingleStudio(id);
+
+                if (model.StudioName != null)
+                {
+                    studio.StudioName = model.StudioName;
+                }
+                
                 studio.DateModified = DateTime.Now;
 
                 return studio;

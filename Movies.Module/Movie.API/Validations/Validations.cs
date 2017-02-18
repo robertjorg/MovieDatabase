@@ -99,5 +99,19 @@ namespace Movie.API.Validations
 
             return returnValue;
         }
+
+        public string CheckMoviesOwned(int userId, int movieTitlesId)
+        {
+            string returnValue = string.Empty;
+            var movieOwnedCount =
+                this.movieRepository.GetMoviesForUser(userId).Count(t => t.MovieTitlesId == movieTitlesId) + 1;
+
+            if (movieOwnedCount > 1)
+            {
+                returnValue = "User already owns movie with that title.";
+            }
+
+            return returnValue;
+        }
     }
 }
