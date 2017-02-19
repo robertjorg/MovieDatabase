@@ -5,13 +5,15 @@ using System.Web;
 
 namespace Movie.API.Services
 {
+    using System.Threading;
+
     public class MovieIdentityService : IMovieIdentityService
     {
         public string CurrentUser
         {
             get
             {
-                return "robertjorgensen";
+                return Thread.CurrentPrincipal.Identity;
             }
         }
     }

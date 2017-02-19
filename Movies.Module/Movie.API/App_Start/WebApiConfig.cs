@@ -10,6 +10,8 @@ namespace Movie.API
 {
     using System.Net.Http.Formatting;
 
+    using WebApiContrib.Formatting.Jsonp;
+
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
@@ -44,6 +46,10 @@ namespace Movie.API
 
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().FirstOrDefault();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver(); // Consumers will be JavaScript? This will make it easier for them to use camel case.
+
+            // Add support JSONP - will return the format, controllers don't need to support this. Do I need this? Will other domains be calling my API?
+            var formatter = new JsonpMediaTypeFormatter(jsonFormatter, "cb");
+            config.Formatters.Insert(0, formatter);
         }
     }
 }

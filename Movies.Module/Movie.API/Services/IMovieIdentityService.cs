@@ -1,7 +1,9 @@
 namespace Movie.API.Services
 {
+    using System.Security.Principal;
+
     public interface IMovieIdentityService
     {
-        string CurrentUser { get; }
+        IIdentity CurrentUser { get; }
     }
 }
