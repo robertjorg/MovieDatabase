@@ -40,13 +40,14 @@ namespace Movie.API.Models
 
         public MoviesOwnedModel Create(MoviesOwned moviesOwned)
         {
+            var storageType = this.movieRepository.GetSingleStorageType(moviesOwned.StorageTypeId);
             return new MoviesOwnedModel()
             {
                 Id = moviesOwned.Id,
                 MovieTitlesId = moviesOwned.MovieTitlesId,
                 MovieTitle = moviesOwned.MovieTitles.MovieTitle,
                 MovieDescription = moviesOwned.MovieTitles.MovieDesc,
-                MovieStorageTypeName = moviesOwned.StorageType.StorageName
+                MovieStorageTypeName = storageType.StorageName
             };
         }
 
@@ -230,7 +231,7 @@ namespace Movie.API.Models
                 {
                     user.UserName = model.UserName;
                 }
-;
+
                 user.DateModified = DateTime.Now;
                 
                 return user;
@@ -251,6 +252,7 @@ namespace Movie.API.Models
                 {
                     storageType.StorageName = model.StorageName;
                 }
+
                 if (model.StorageUrl != null)
                 {
                     storageType.Url = model.StorageUrl;
@@ -290,7 +292,6 @@ namespace Movie.API.Models
                 {
                     moviesOwned.StorageTypeId = storageType.Id;
                 }
-
 
                 moviesOwned.MovieTitles = this.movieRepository.GetMovieTitles().FirstOrDefault(t => t.MovieTitle == model.MovieTitle);
                 moviesOwned.DateAdded = DateTime.Now;

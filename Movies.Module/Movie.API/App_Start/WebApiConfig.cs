@@ -9,6 +9,9 @@ using Newtonsoft.Json.Serialization;
 namespace Movie.API
 {
     using System.Net.Http.Formatting;
+    using System.Web.Http.Dispatcher;
+
+    using Movie.API.Services;
 
     using WebApiContrib.Formatting.Jsonp;
 
@@ -44,12 +47,20 @@ namespace Movie.API
                 routeTemplate: "MovieKeep/StorageType({id})",
                 defaults: new { controller = "StorageType", id = RouteParameter.Optional });
 
+            config.Routes.MapHttpRoute(
+                name: "Studios",
+                routeTemplate: "MovieKeep/Studios({id})",
+                defaults: new { controller = "Studios", id = RouteParameter.Optional });
+
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().FirstOrDefault();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver(); // Consumers will be JavaScript? This will make it easier for them to use camel case.
 
             // Add support JSONP - will return the format, controllers don't need to support this. Do I need this? Will other domains be calling my API?
-            var formatter = new JsonpMediaTypeFormatter(jsonFormatter, "cb");
-            config.Formatters.Insert(0, formatter);
+            //var formatter = new JsonpMediaTypeFormatter(jsonFormatter, "cb");
+            //config.Formatters.Insert(0, formatter);
+
+            // Replace the Controller Configuration with ours
+            // config.Services.Replace(typeof(IHttpControllerSelector), new MovieModuleControllerSelector(config));
         }
     }
 }

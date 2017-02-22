@@ -5,11 +5,12 @@ using System.Web;
 
 namespace Movie.API.Services
 {
+    using System.Security.Principal;
     using System.Threading;
 
     public class MovieIdentityService : IMovieIdentityService
     {
-        public string CurrentUser
+        public IIdentity CurrentUser
         {
             get
             {

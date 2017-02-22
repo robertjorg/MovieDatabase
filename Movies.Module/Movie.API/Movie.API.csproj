@@ -267,6 +267,7 @@
     <Compile Include="Controllers\StorageTypeController.cs" />
     <Compile Include="Controllers\StudiosController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Filters\MovieModuleAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -284,6 +285,7 @@
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Services\IMovieIdentityService.cs" />
     <Compile Include="Services\MovieIdentityService.cs" />
+    <Compile Include="Services\MovieModuleControllerSelector.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Validations\Validations.cs" />
   </ItemGroup>
