@@ -17,13 +17,11 @@
 
         public string LoanToLastName { get; set; }
 
-        public List<MoviesOwned> MoviesLoaned { get; set; }
-
         public int MoviesOwnedId { get; set; }
 
-        public DateTime DateModified { get; set; }
+        public DateTime? DateModified { get; set; }
 
-        public DateTime DateAdded { get; set; }
+        public DateTime? DateAdded { get; set; }
 
         public bool IsDirty { get; set; }
     }

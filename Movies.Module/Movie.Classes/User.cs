@@ -17,15 +17,16 @@
         [Required]
         public string LastName { get; set; }
 
-        public DateTime OpentDt { get; set; }
+        [Required]
+        public string UserName { get; set; }
 
         public DateTime LastLoginDt { get; set; }
 
         public List<MoviesOwned> MoviesOwned { get; set; }
 
-        public DateTime DateModified { get; set; }
+        public DateTime? DateModified { get; set; }
 
-        public DateTime DateAdded { get; set; }
+        public DateTime? DateAdded { get; set; }
 
         public bool IsDirty { get; set; }
     }
