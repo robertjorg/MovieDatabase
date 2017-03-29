@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Movies.Frontend.Views.FindMovie"
+             Title="Find Movie">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <Label Text="Looking for something?" 
+               Grid.Column="0"
+               Grid.Row="0"/>
+        <Label x:Name="FindMeLabel"
+               Text="Movie Title"
+               Grid.Column="0"
+               Grid.Row="1" />
+        <Entry x:Name="NewMovie"
+               Placeholder="Enter Movie Title" 
+               Grid.Column="1"
+               Grid.Row="1"/>
+
+
+    </Grid>
+
+</ContentPage>
