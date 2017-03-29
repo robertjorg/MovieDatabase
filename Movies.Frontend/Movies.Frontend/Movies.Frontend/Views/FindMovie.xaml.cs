@@ -15,6 +15,8 @@ namespace Movies.Frontend.Views
         public FindMovie()
         {
             InitializeComponent();
+
+
         }
     }
 }

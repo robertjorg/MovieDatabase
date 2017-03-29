@@ -14,7 +14,14 @@ namespace Movies.Frontend.Views
     {
         public AddMovies()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+            this.StorageSelection.Items.Add("DVD");
+            this.StorageSelection.Items.Add("Blu-Ray");
+            this.StorageSelection.Items.Add("UltraViolet");
+            this.StorageSelection.Items.Add("DisneyMovies");
+            this.StorageSelection.Items.Add("Amazon");
+            this.StorageSelection.Items.Add("GooglePlay");
+            this.StorageSelection.SelectedIndex = 0;
         }
     }
 }
