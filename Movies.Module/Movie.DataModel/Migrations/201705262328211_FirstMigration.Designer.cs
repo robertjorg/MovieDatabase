@@ -7,13 +7,13 @@ namespace Movie.DataModel.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class RemoveRedundantOnUser : IMigrationMetadata
+    public sealed partial class FirstMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RemoveRedundantOnUser));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(FirstMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201702100424193_RemoveRedundantOnUser"; }
+            get { return "201705262328211_FirstMigration"; }
         }
         
         string IMigrationMetadata.Source

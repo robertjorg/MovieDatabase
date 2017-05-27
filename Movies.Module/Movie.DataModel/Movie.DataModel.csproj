@@ -50,29 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IMovieRepository.cs" />
-    <Compile Include="Migrations\201702060314061_RedoIt.cs" />
-    <Compile Include="Migrations\201702060314061_RedoIt.Designer.cs">
-      <DependentUpon>201702060314061_RedoIt.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702060400419_UPdated.cs" />
-    <Compile Include="Migrations\201702060400419_UPdated.Designer.cs">
-      <DependentUpon>201702060400419_UPdated.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702080233376_useraddition.cs" />
-    <Compile Include="Migrations\201702080233376_useraddition.Designer.cs">
-      <DependentUpon>201702080233376_useraddition.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702100424193_RemoveRedundantOnUser.cs" />
-    <Compile Include="Migrations\201702100424193_RemoveRedundantOnUser.Designer.cs">
-      <DependentUpon>201702100424193_RemoveRedundantOnUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702120445032_nullableDateTime.cs" />
-    <Compile Include="Migrations\201702120445032_nullableDateTime.Designer.cs">
-      <DependentUpon>201702120445032_nullableDateTime.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702130327343_moreUpdates.cs" />
-    <Compile Include="Migrations\201702130327343_moreUpdates.Designer.cs">
-      <DependentUpon>201702130327343_moreUpdates.cs</DependentUpon>
+    <Compile Include="Migrations\201705262328211_FirstMigration.cs" />
+    <Compile Include="Migrations\201705262328211_FirstMigration.Designer.cs">
+      <DependentUpon>201705262328211_FirstMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MovieContext.cs" />
@@ -90,23 +70,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702060314061_RedoIt.resx">
-      <DependentUpon>201702060314061_RedoIt.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702060400419_UPdated.resx">
-      <DependentUpon>201702060400419_UPdated.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702080233376_useraddition.resx">
-      <DependentUpon>201702080233376_useraddition.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702100424193_RemoveRedundantOnUser.resx">
-      <DependentUpon>201702100424193_RemoveRedundantOnUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702120445032_nullableDateTime.resx">
-      <DependentUpon>201702120445032_nullableDateTime.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702130327343_moreUpdates.resx">
-      <DependentUpon>201702130327343_moreUpdates.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705262328211_FirstMigration.resx">
+      <DependentUpon>201705262328211_FirstMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
