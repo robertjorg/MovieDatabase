@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Movies.Frontend.Views.MovieTitleDetailView"
+             Title="Movie Title Details">
+    <StackLayout>
+        <TableView Intent="Form">
+            <TableRoot>
+                <TableSection Title="Movie Information">
+                    <EntryCell x:Name="title" Label="Title:" Text="{Binding Path=MovieTitle.Title}" />
+                    <EntryCell x:Name="movieDesc" Label="Movie Desc" Text="{Binding Path=MovieTitle.MovieDesc}" />
+                    <DatePicker x:Name="releaseDate" Date="{Binding Path=MovieTitle.ReleaseDate}" />
+                </TableSection>
+                <TableSection Title="Input Information">
+                    <DatePicker x:Name="dateAdded" Date="{Binding Path=MovieTitle.DateAdded}" />
+                    <DatePicker x:Name="dateModified" Date="{Binding Path=MovieTitle.DateModified}" />
+                </TableSection>
+                <TableSection>
+                    <ViewCell>
+                        <Button Text="Save" HorizontalOptions="FillAndExpand" Command="{Binding SaveCommand}" />
+                        <Button Text="Delete" HorizontalOptions="FillAndExpand" Command="{Binding DeleteCommand}" />
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </StackLayout>
+</ContentPage>
