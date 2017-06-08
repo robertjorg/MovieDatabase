@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Movies.Frontend.Views.StorageTypeDetailView"
+             Title="Storage Type Details">
+    <StackLayout>
+        <TableView Intent="Form">
+            <TableRoot>
+                <TableSection Title="Storage Name">
+                    <EntryCell Text="{Binding Path=Storage.StorageName}" />
+                </TableSection>
+                <TableSection Title="Storage Type URL">
+                    <EntryCell Text="{Binding Path=Storage.Url}" />
+                </TableSection>
+                <TableSection>
+                    <ViewCell>
+                        <Button Text="Save" HorizontalOptions="FillAndExpand" Command="{Binding SaveCommand}" />
+                    </ViewCell>
+                    <ViewCell>
+                        <Button Text="Delete" HorizontalOptions="FillAndExpand" Command="{Binding DeleteCommand}" />
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </StackLayout>
+</ContentPage>

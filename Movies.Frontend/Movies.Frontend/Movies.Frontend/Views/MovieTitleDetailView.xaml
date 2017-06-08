@@ -6,18 +6,25 @@
     <StackLayout>
         <TableView Intent="Form">
             <TableRoot>
-                <TableSection Title="Movie Information">
-                    <EntryCell x:Name="title" Label="Title:" Text="{Binding Path=MovieTitle.Title}" />
-                    <EntryCell x:Name="movieDesc" Label="Movie Desc" Text="{Binding Path=MovieTitle.MovieDesc}" />
-                    <DatePicker x:Name="releaseDate" Date="{Binding Path=MovieTitle.ReleaseDate}" />
+                <TableSection Title="Title">
+                    <EntryCell x:Name="title" Text="{Binding Path=MovieTitle.Title}" />
                 </TableSection>
-                <TableSection Title="Input Information">
-                    <DatePicker x:Name="dateAdded" Date="{Binding Path=MovieTitle.DateAdded}" />
-                    <DatePicker x:Name="dateModified" Date="{Binding Path=MovieTitle.DateModified}" />
+                <TableSection Title="Movie Description">
+                    <EntryCell x:Name="movieDesc" Text="{Binding Path=MovieTitle.MovieDesc}" />
+                </TableSection>
+                <TableSection Title="IMDB Url">
+                    <EntryCell x:Name="imdbUrl" Text="{Binding Path=MovieTitle.ImdbUrl}" />
+                </TableSection>
+                <TableSection Title="Release Date">
+                    <ViewCell>
+                        <DatePicker Date="{Binding Path=MovieTitle.ReleaseDate}" Format="dd MMM yyyy" />
+                    </ViewCell>
                 </TableSection>
                 <TableSection>
                     <ViewCell>
                         <Button Text="Save" HorizontalOptions="FillAndExpand" Command="{Binding SaveCommand}" />
+                    </ViewCell>
+                    <ViewCell>
                         <Button Text="Delete" HorizontalOptions="FillAndExpand" Command="{Binding DeleteCommand}" />
                     </ViewCell>
                 </TableSection>

@@ -9,6 +9,8 @@ namespace Movies.Frontend.ViewModels
 {
     public class MovieTitleViewModel : BaseViewModel
     {
+        private string titleReleaseDate;
+
         private string title;
 
         private string movieDesc;
@@ -26,6 +28,7 @@ namespace Movies.Frontend.ViewModels
         public MovieTitleViewModel(MovieTitle movieTitle)
         {
             this.Id = movieTitle.Id;
+            this.titleReleaseDate = movieTitle.TitleReleaseDate;
             this.title = movieTitle.Title;
             this.movieDesc = movieTitle.MovieDesc;
             this.releaseDate = movieTitle.ReleaseDate;
@@ -35,6 +38,18 @@ namespace Movies.Frontend.ViewModels
         }
 
         public int Id { get; set; }
+
+        public string TitleReleaseDate
+        {
+            get
+            {
+                return this.titleReleaseDate;
+            }
+            set
+            {
+                this.titleReleaseDate = Title + ReleaseDate.ToString();
+            }
+        }
 
         public string Title
         {
@@ -72,6 +87,10 @@ namespace Movies.Frontend.ViewModels
         {
             get
             {
+                if(this.releaseDate == null)
+                {
+                    return DateTime.Today;
+                }
                 return this.releaseDate;
             }
             set
@@ -109,9 +128,9 @@ namespace Movies.Frontend.ViewModels
             }
             set
             {
-                if(this.dateModified != value)
+                if(this.dateModified != value || this.dateModified < DateTime.Now)
                 {
-                    this.dateModified = value;
+                    this.dateModified = DateTime.Now;
                     this.OnPropertyChanged(nameof(DateModified));
                 }
             }
@@ -125,9 +144,9 @@ namespace Movies.Frontend.ViewModels
             }
             set
             {
-                if (this.dateAdded != value)
+                if (this.dateAdded == null)
                 {
-                    this.dateAdded = value;
+                    this.dateAdded = DateTime.Now;
                     this.OnPropertyChanged(nameof(DateAdded));
                 }
             }

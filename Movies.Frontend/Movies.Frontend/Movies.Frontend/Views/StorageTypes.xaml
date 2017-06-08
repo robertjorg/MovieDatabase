@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Movies.Frontend.Views.MovieTitles"
-             Title="Available Titles">
+             x:Class="Movies.Frontend.Views.StorageTypes"
+             Title="Available Storage Types">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Command="{Binding AddMovieCommand}" />
+        <ToolbarItem Text="Add" Command="{Binding AddStorageCommand}" />
     </ContentPage.ToolbarItems>
     <ListView
-        ItemsSource ="{Binding Movies}"
-        SelectedItem="{Binding SelectedMovie, Mode=TwoWay}"
+        ItemsSource ="{Binding Storages}"
+        SelectedItem="{Binding SelectedStorage, Mode=TwoWay}"
         ItemSelected="OnMovieSelected">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <TextCell Text="{Binding Title}"></TextCell>
+                <TextCell Text="{Binding StorageName}"></TextCell>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>

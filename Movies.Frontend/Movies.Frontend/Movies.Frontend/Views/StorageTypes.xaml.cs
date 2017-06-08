@@ -12,13 +12,13 @@ using Xamarin.Forms.Xaml;
 namespace Movies.Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MovieTitles : ContentPage
+    public partial class StorageTypes : ContentPage
     {
-        public MovieTitles()
+        public StorageTypes()
         {
-            var movieStore = new BaseMovieTitleStore(DependencyService.Get<ISQLiteDb>());
+            var storageStore = new BaseStorageStore(DependencyService.Get<ISQLiteDb>());
             var pageService = new PageService();
-            ViewModel = new MovieTitlesViewModel(movieStore, pageService);
+            ViewModel = new StorageTypesViewModel(storageStore, pageService);
 
             InitializeComponent();
         }
@@ -31,12 +31,12 @@ namespace Movies.Frontend.Views
 
         void OnMovieSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            ViewModel.SelectedMovieCommand.Execute(e.SelectedItem);
+            ViewModel.SelectedStorageCommand.Execute(e.SelectedItem);
         }
 
-        public MovieTitlesViewModel ViewModel
+        public StorageTypesViewModel ViewModel
         {
-            get { return BindingContext as MovieTitlesViewModel; }
+            get { return BindingContext as StorageTypesViewModel; }
             set { BindingContext = value; }
         }
     }
