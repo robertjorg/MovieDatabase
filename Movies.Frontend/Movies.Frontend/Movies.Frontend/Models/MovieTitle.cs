@@ -1,4 +1,5 @@
 ﻿using SQLite;
+using SQLiteNetExtensions.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,5 +28,11 @@ namespace Movies.Frontend.Models
         public DateTime DateModified { get; set; }
 
         public DateTime DateAdded { get; set; }
+
+        [ForeignKey(typeof(Storage))]
+        public int StorageId { get; set; }
+
+        [OneToMany]
+        public Storage Storage { get; set; }
     }
 }
