@@ -13,8 +13,8 @@ namespace Movies.Frontend
         {
             InitializeComponent();
 
-            //MainPage = new NavigationPage(new Movies.Frontend.Views.MovieTitles());
-            MainPage = new NavigationPage(new Movies.Frontend.Views.StorageTypes());
+            MainPage = new NavigationPage(new Movies.Frontend.Views.MovieTitles());
+            //MainPage = new NavigationPage(new Movies.Frontend.Views.StorageTypes());
         }
 
         protected override void OnStart()

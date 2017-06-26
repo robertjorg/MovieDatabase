@@ -1,6 +1,7 @@
 ﻿using Movies.Frontend.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,8 @@ namespace Movies.Frontend.ViewModels
 
         private DateTime dateAdded;
 
+        private string storageType;
+
         public MovieTitleViewModel() { }
 
         public MovieTitleViewModel(MovieTitle movieTitle)
@@ -33,6 +36,7 @@ namespace Movies.Frontend.ViewModels
             this.movieDesc = movieTitle.MovieDesc;
             this.releaseDate = movieTitle.ReleaseDate;
             this.imdbUrl = movieTitle.ImdbUrl;
+            this.storageType = movieTitle.StorageType;
             this.dateModified = movieTitle.DateModified;
             this.dateAdded = movieTitle.DateAdded;
         }
@@ -79,6 +83,22 @@ namespace Movies.Frontend.ViewModels
                 {
                     this.movieDesc = value;
                     this.OnPropertyChanged(nameof(MovieDesc));
+                }
+            }
+        }
+
+        public string StorageType
+        {
+            get
+            {
+                return this.storageType;
+            }
+            set
+            {
+                if(this.storageType != value)
+                {
+                    this.storageType = value;
+                    this.OnPropertyChanged(nameof(StorageType));
                 }
             }
         }

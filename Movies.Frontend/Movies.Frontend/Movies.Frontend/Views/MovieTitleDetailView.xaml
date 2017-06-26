@@ -22,6 +22,14 @@
                 </TableSection>
                 <TableSection>
                     <ViewCell>
+                        <StackLayout Orientation="Horizontal" Padding="13, 5">
+                            <Label Text="Storage Type:" VerticalOptions="Center"/>
+                            <Label VerticalOptions="Center" HorizontalOptions="EndAndExpand" Text="{Binding Path=MovieTitle.StorageType}" />
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+                <TableSection>
+                    <ViewCell>
                         <Button Text="Save" HorizontalOptions="FillAndExpand" Command="{Binding SaveCommand}" />
                     </ViewCell>
                     <ViewCell>

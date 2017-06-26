@@ -17,6 +17,7 @@ namespace Movies.Frontend.ViewModels
         {
             this.connection = db.GetConnection();
             this.connection.CreateTableAsync<MovieTitle>();
+            this.connection.CreateTableAsync<Storage>();
         }
 
         public async Task<IEnumerable<MovieTitle>> GetMovieTitlesAsync()

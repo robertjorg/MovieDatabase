@@ -117,6 +117,7 @@ namespace Movies.Frontend.ViewModels
                 movieTitle.MovieDesc = updatedMovie.MovieDesc;
                 movieTitle.ReleaseDate = updatedMovie.ReleaseDate;
                 movieTitle.ImdbUrl = updatedMovie.ImdbUrl;
+                movieTitle.StorageType = updatedMovie.StorageType;
                 movieTitle.DateAdded = updatedMovie.DateAdded;
                 movieTitle.DateModified = updatedMovie.DateModified;
             };

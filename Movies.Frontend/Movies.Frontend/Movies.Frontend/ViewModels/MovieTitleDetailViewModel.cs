@@ -45,6 +45,7 @@ namespace Movies.Frontend.ViewModels
                 MovieDesc = viewModel.MovieDesc,
                 ReleaseDate = viewModel.ReleaseDate,
                 ImdbUrl = viewModel.ImdbUrl,
+                StorageType = viewModel.StorageType,
                 DateAdded = viewModel.DateAdded,
                 DateModified = viewModel.DateModified
             };
