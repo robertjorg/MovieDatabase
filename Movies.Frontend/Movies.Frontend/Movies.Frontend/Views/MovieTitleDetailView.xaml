@@ -21,10 +21,10 @@
                     </ViewCell>
                 </TableSection>
                 <TableSection>
-                    <ViewCell>
+                    <ViewCell Tapped="Storage_Tapped">
                         <StackLayout Orientation="Horizontal" Padding="13, 5">
                             <Label Text="Storage Type:" VerticalOptions="Center"/>
-                            <Label VerticalOptions="Center" HorizontalOptions="EndAndExpand" Text="{Binding Path=MovieTitle.StorageType}" />
+                            <Label x:Name="storageType" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Text="{Binding Path=MovieTitle.StorageType}" />
                         </StackLayout>
                     </ViewCell>
                 </TableSection>

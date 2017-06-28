@@ -12,7 +12,7 @@
         ItemSelected="OnMovieSelected">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <TextCell Text="{Binding Title}"></TextCell>
+                <TextCell Text="{Binding Title}" />
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>

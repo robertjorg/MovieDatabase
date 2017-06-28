@@ -1,5 +1,6 @@
 ﻿using Movies.Frontend.Interfaces;
 using Movies.Frontend.Models;
+using Movies.Frontend.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,16 +14,17 @@ namespace Movies.Frontend.ViewModels
     public class MovieTitleDetailViewModel
     {
         private readonly BaseMovieTitleStore movieTitleStore;
+        private BaseStorageStore storageStore;
         private readonly IPageService pageService;
 
         public event EventHandler<MovieTitle> MovieAdded;
         public event EventHandler<MovieTitle> MovieUpdated;
         public event EventHandler<MovieTitleViewModel> MovieDeleted;
+        public event EventHandler<StorageMethodsViewModel> SelectStorage;
 
         public MovieTitle MovieTitle { get; private set; }
 
         public ICommand SaveCommand { get; private set; }
-        public ICommand DeleteCommand { get; private set; }
 
         public MovieTitleDetailViewModel(MovieTitleViewModel viewModel, BaseMovieTitleStore movieStore, IPageService pageService)
         {
@@ -35,7 +37,6 @@ namespace Movies.Frontend.ViewModels
             this.movieTitleStore = movieStore;
 
             this.SaveCommand = new Command(async () => await Save());
-            this.DeleteCommand = new Command<MovieTitleViewModel>(async c => await Delete(viewModel));
 
             MovieTitle = new MovieTitle
             {
@@ -47,7 +48,7 @@ namespace Movies.Frontend.ViewModels
                 ImdbUrl = viewModel.ImdbUrl,
                 StorageType = viewModel.StorageType,
                 DateAdded = viewModel.DateAdded,
-                DateModified = viewModel.DateModified
+                DateModified = viewModel.DateModified,
             };
         }
 
@@ -73,17 +74,6 @@ namespace Movies.Frontend.ViewModels
             }
 
             await this.pageService.PopAsync();
-        }
-
-        private async Task Delete(MovieTitleViewModel titleViewModel)
-        {
-            if(await this.pageService.DisplayAlert("Warning", $"Are you sure you want to delete {titleViewModel.Title}?", "Yes", "No"))
-            {
-                var movieTitle = await this.movieTitleStore.GetMovie(titleViewModel.Id);
-                MovieDeleted?.Invoke(this, titleViewModel);
-                await this.movieTitleStore.DeleteMovieTitle(movieTitle);
-                await this.pageService.PopAsync();
-            }
         }
     }
 }

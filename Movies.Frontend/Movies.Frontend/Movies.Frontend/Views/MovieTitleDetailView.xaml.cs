@@ -19,5 +19,17 @@ namespace Movies.Frontend.Views
 
             BindingContext = viewModel;
         }
+
+        private void Storage_Tapped(object sender, EventArgs e)
+        {
+            var page = new StorageMethodsPage();
+
+            page.StorageMethods.ItemSelected += (source, args) =>
+            {
+                storageType.Text = args.SelectedItem.ToString();
+                Navigation.PopAsync();
+            };
+            Navigation.PushAsync(page);
+        }
     }
 }

@@ -49,6 +49,7 @@
     <Compile Include="ViewModels\MovieTitleDetailViewModel.cs" />
     <Compile Include="ViewModels\MovieTitlesViewModel.cs" />
     <Compile Include="ViewModels\MovieTitleViewModel.cs" />
+    <Compile Include="ViewModels\StorageMethodsViewModel.cs" />
     <Compile Include="ViewModels\StorageTypeDetailViewModel.cs" />
     <Compile Include="ViewModels\StorageTypesViewModel.cs" />
     <Compile Include="ViewModels\StorageViewModel.cs" />

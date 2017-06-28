@@ -1,4 +1,5 @@
 ﻿using Movies.Frontend.Models;
+using Movies.Frontend.Persistence;
 using Movies.Frontend.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -15,42 +16,29 @@ namespace Movies.Frontend.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class StorageMethodsPage : ContentPage
     {
-        private BaseStorageStore storageStore;
-
-        public ObservableCollection<StorageViewModel> Storages { get; private set; } = new ObservableCollection<StorageViewModel>();
-
         public StorageMethodsPage()
         {
             InitializeComponent();
 
-            PopulateList();
+            AddStorageTypes();
+        }
+        
+        public ListView StorageMethods
+        {
+            get { return storageTypes; }
         }
 
-        public async Task PopulateList()
+        public void AddStorageTypes()
         {
-            var storageTypes = await this.storageStore.GetStorageAsync();
-
-            foreach (var c in storageTypes)
+            storageTypes.ItemsSource = new List<string>
             {
-                Storages.Add(new StorageViewModel(c));
-            }
-
-            storageList.ItemsSource = storageTypes;
-            //{
-            //    "DVD",
-            //    "Vudu",
-            //    "BluRay",
-            //    "GooglePlay",
-            //    "Amazon"
-            //};
-        }
-
-        public ListView StorageTypes
-        {
-            get
-            {
-                return storageList;
-            }
+                "DVD",
+                "BluRay",
+                "Vudu",
+                "Google Play",
+                "Amazon",
+                "Plex"
+            };
         }
     }
 }
