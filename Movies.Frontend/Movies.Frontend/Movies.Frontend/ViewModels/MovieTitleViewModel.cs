@@ -51,7 +51,7 @@ namespace Movies.Frontend.ViewModels
             }
             set
             {
-                this.titleReleaseDate = Title + ReleaseDate.ToString();
+                this.titleReleaseDate = Title + ReleaseDate.ToString() + StorageType;
             }
         }
 
