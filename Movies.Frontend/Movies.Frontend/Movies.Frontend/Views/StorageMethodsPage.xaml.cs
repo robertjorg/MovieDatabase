@@ -32,12 +32,13 @@ namespace Movies.Frontend.Views
         {
             storageTypes.ItemsSource = new List<string>
             {
-                "DVD",
-                "BluRay",
-                "Vudu",
-                "Google Play",
                 "Amazon",
-                "Plex"
+                "BluRay",
+                "DVD",
+                "Disney Anywhere",
+                "Google Play",
+                "Plex",
+                "Vudu/UltraViolet",
             };
         }
     }
