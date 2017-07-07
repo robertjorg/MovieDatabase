@@ -23,7 +23,7 @@
                 <TableSection>
                     <ViewCell Tapped="Storage_Tapped">
                         <StackLayout Orientation="Horizontal" Padding="13, 5">
-                            <Label Text="Storage Type:" VerticalOptions="Center"/>
+                            <Label Text="Where it's stored:" VerticalOptions="Center"/>
                             <Label x:Name="storageType" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Text="{Binding Path=MovieTitle.StorageType, Mode=TwoWay}" />
                         </StackLayout>
                     </ViewCell>
