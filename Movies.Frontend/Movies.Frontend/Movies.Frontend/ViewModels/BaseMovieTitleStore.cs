@@ -22,7 +22,8 @@ namespace Movies.Frontend.ViewModels
 
         public async Task<IEnumerable<MovieTitle>> GetMovieTitlesAsync()
         {
-            return await this.connection.Table<MovieTitle>().ToListAsync();
+            var returnable = await this.connection.Table<MovieTitle>().ToListAsync();
+            return returnable.OrderBy(mt => mt.Title).ThenBy(s => s.StorageType);
         }
 
         public async Task<MovieTitle> GetMovie(int id)
