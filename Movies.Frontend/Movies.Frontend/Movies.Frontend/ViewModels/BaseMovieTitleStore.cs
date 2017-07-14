@@ -26,6 +26,26 @@ namespace Movies.Frontend.ViewModels
             return returnable.OrderBy(mt => mt.Title).ThenBy(s => s.StorageType);
         }
 
+        public async Task<IEnumerable<MovieTitle>> GetSearchMoviesAsync(string searchString)
+        {
+            var returnableMovie = await this.connection.Table<MovieTitle>().Where(n => n.Title.StartsWith(searchString)).ToListAsync();
+            var returnableStorage = await this.connection.Table<MovieTitle>().Where(s => s.StorageType.StartsWith(searchString)).ToListAsync();
+
+            List<MovieTitle> returnable = new List<MovieTitle>();
+
+            foreach (MovieTitle m in returnableMovie)
+            {
+                returnable.Add(m);
+            }
+
+            foreach(MovieTitle s in returnableStorage)
+            {
+                returnable.Add(s);
+            }
+
+            return returnable.OrderBy(mt => mt.Title).ThenBy(s => s.StorageType);
+        }
+
         public async Task<MovieTitle> GetMovie(int id)
         {
             return await this.connection.FindAsync<MovieTitle>(id);

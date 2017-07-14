@@ -22,6 +22,8 @@ namespace Movies.Frontend.ViewModels
 
         private BaseMovieTitleStore movieStore;
 
+        private string searchText;
+
         public ObservableCollection<MovieTitleViewModel> Movies { get; private set; } = new ObservableCollection<MovieTitleViewModel>();
 
         public MovieTitleViewModel SelectedMovie
@@ -49,6 +51,8 @@ namespace Movies.Frontend.ViewModels
 
         public ICommand DeleteMovieCommand { get; set; }
 
+        public ICommand SearchDataCommand { get; set; }
+
         public MovieTitlesViewModel(BaseMovieTitleStore movieStore, IPageService pageService)
         {
             this.movieStore = movieStore;
@@ -61,6 +65,31 @@ namespace Movies.Frontend.ViewModels
             this.SelectedMovieCommand = new Command<MovieTitleViewModel>(async c => await SelectMovie(c));
 
             this.DeleteMovieCommand = new Command<MovieTitleViewModel>(async c => await DeleteMovie(c));
+
+            this.SearchDataCommand = new Command(async () => await SearchData());
+        }
+
+        public string SearchText
+        {
+            get
+            {
+                return searchText;
+            }
+
+            set
+            {
+                if (value != null && value != string.Empty && value != "")
+                {
+                    searchText = value;
+                    this.OnPropertyChanged(nameof(SearchText));
+                }
+                else
+                {
+                    this.isDataLoaded = false;
+                    Movies.Clear();
+                    this.LoadData();
+                }
+            }
         }
 
         private async Task LoadData()
@@ -74,10 +103,26 @@ namespace Movies.Frontend.ViewModels
 
             var movieTitles = await this.movieStore.GetMovieTitlesAsync();
 
-            foreach(var c in movieTitles)
+            foreach (var c in movieTitles)
             {
                 Movies.Add(new MovieTitleViewModel(c));
             }
+        }
+
+        private async Task SearchData()
+        {
+            Movies.Clear();
+
+            this.isDataLoaded = true;
+            var newText = this.SearchText;
+
+            var movieTitles = await this.movieStore.GetSearchMoviesAsync(newText);
+
+            foreach (var m in movieTitles)
+            {
+                Movies.Add(new MovieTitleViewModel(m));
+            }
+
         }
 
         private async Task AddMovieTitle()
@@ -88,7 +133,7 @@ namespace Movies.Frontend.ViewModels
             {
                 //try
                 //{
-                    Movies.Add(new MovieTitleViewModel(movieTitle));
+                Movies.Add(new MovieTitleViewModel(movieTitle));
                 //}
                 //catch (Exception e)
                 //{
@@ -97,11 +142,14 @@ namespace Movies.Frontend.ViewModels
             };
 
             await this.pageService.PushAsync(new MovieTitleDetailView(viewModel));
+
+            Movies.OrderBy(mt => mt.Title).ThenBy(s => s.StorageType);
+
         }
 
         private async Task SelectMovie(MovieTitleViewModel movieTitle)
         {
-            if(movieTitle == null)
+            if (movieTitle == null)
             {
                 return;
             }
@@ -127,7 +175,7 @@ namespace Movies.Frontend.ViewModels
 
         private async Task DeleteMovie(MovieTitleViewModel movieTitleViewModel)
         {
-            if(await this.pageService.DisplayAlert("Warning", $"Are you sure you want to delete {movieTitleViewModel.Title}?", "Yes", "No"))
+            if (await this.pageService.DisplayAlert("Warning", $"Are you sure you want to delete {movieTitleViewModel.Title}?", "Yes", "No"))
             {
                 Movies.Remove(movieTitleViewModel);
 

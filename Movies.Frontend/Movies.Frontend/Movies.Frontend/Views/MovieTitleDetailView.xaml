@@ -2,22 +2,35 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Movies.Frontend.Views.MovieTitleDetailView"
-             Title="Movie Title Details">
+             Title="Movie Title Details"
+             BackgroundColor="{StaticResource backgroundColor}">
     <StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Title:" VerticalTextAlignment="Center" />
+            <Entry Text="{Binding Path=MovieTitle.Title}" HorizontalOptions="EndAndExpand" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Release Date:" VerticalTextAlignment="Center" />
+            <DatePicker Date="{Binding Path=MovieTitle.ReleaseDate}" Format="MMM dd, yyyy" HorizontalOptions="EndAndExpand" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Storage Type:" VerticalOptions="Center" />
+            <Button HorizontalOptions="FillAndExpand" Text="{Binding Path=MovieTitle.StorageType, Mode=TwoWay}" Clicked="Storage_Tapped" />
+        </StackLayout>
         <TableView Intent="Form">
             <TableRoot>
                 <TableSection Title="Title">
                     <EntryCell x:Name="title" Text="{Binding Path=MovieTitle.Title}" />
                 </TableSection>
-                <TableSection Title="Movie Description">
+                <!--<TableSection Title="Movie Description">
                     <EntryCell x:Name="movieDesc" Text="{Binding Path=MovieTitle.MovieDesc}" />
                 </TableSection>
                 <TableSection Title="IMDB Url">
                     <EntryCell x:Name="imdbUrl" Text="{Binding Path=MovieTitle.ImdbUrl}" />
-                </TableSection>
-                <TableSection Title="Release Date">
+                </TableSection>-->
+                <TableSection Title="Release Year">
                     <ViewCell>
-                        <DatePicker Date="{Binding Path=MovieTitle.ReleaseDate}" Format="dd MMM yyyy" />
+                        <DatePicker Date="{Binding Path=MovieTitle.ReleaseDate}" Format="yyyy" HorizontalOptions="EndAndExpand"/>
                     </ViewCell>
                 </TableSection>
                 <TableSection>
@@ -33,7 +46,7 @@
                         <Button Text="Save" HorizontalOptions="FillAndExpand" Command="{Binding SaveCommand}" />
                     </ViewCell>
                     <ViewCell>
-                        <Button Text="Delete" HorizontalOptions="FillAndExpand" Command="{Binding DeleteCommand}" />
+                        <Button Text="Delete" HorizontalOptions="FillAndExpand" Command="{Binding DeleteCommand}" IsVisible="{Binding Path=MovieTitle.Id}" />
                     </ViewCell>
                 </TableSection>
             </TableRoot>
