@@ -28,8 +28,8 @@ namespace Movies.Frontend.ViewModels
 
         public async Task<IEnumerable<MovieTitle>> GetSearchMoviesAsync(string searchString)
         {
-            var returnableMovie = await this.connection.Table<MovieTitle>().Where(n => n.Title.StartsWith(searchString)).ToListAsync();
-            var returnableStorage = await this.connection.Table<MovieTitle>().Where(s => s.StorageType.StartsWith(searchString)).ToListAsync();
+            var returnableMovie = await this.connection.Table<MovieTitle>().Where(n => n.Title.Contains(searchString)).ToListAsync();
+            var returnableStorage = await this.connection.Table<MovieTitle>().Where(s => s.StorageType.Contains(searchString)).ToListAsync();
 
             List<MovieTitle> returnable = new List<MovieTitle>();
 
