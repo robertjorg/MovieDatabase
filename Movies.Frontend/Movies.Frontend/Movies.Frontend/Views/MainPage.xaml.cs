@@ -15,20 +15,5 @@ namespace Movies.Frontend
         {
             InitializeComponent();
         }
-
-        private void GetAllMovies(object sender, EventArgs e)
-        {
-            this.Navigation.PushAsync(new GetAllMovies());
-        }
-
-        private void FindMovies(object sender, EventArgs e)
-        {
-            this.Navigation.PushAsync(new FindMovie());
-        }
-
-        private void AddMovies(object sender, EventArgs e)
-        {
-            this.Navigation.PushAsync(new AddMovies());
-        }
     }
 }

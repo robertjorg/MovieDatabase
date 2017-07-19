@@ -53,15 +53,6 @@
     <Compile Include="ViewModels\StorageTypeDetailViewModel.cs" />
     <Compile Include="ViewModels\StorageTypesViewModel.cs" />
     <Compile Include="ViewModels\StorageViewModel.cs" />
-    <Compile Include="Views\AddMovies.xaml.cs">
-      <DependentUpon>AddMovies.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\FindMovie.xaml.cs">
-      <DependentUpon>FindMovie.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\GetAllMovies.xaml.cs">
-      <DependentUpon>GetAllMovies.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -133,24 +124,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\GetAllMovies.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\FindMovie.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\AddMovies.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\MovieTitles.xaml">

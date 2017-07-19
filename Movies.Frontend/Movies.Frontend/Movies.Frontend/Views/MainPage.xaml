@@ -4,53 +4,5 @@
              xmlns:local="clr-namespace:Movies.Frontend"
              x:Class="Movies.Frontend.MainPage"
              Title="MovieKeep">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-
-        <Label Text="Insert Icon Here" 
-               Grid.Column="0"
-               Grid.Row="0"/>
-        <Label x:Name="WelcomeUser" 
-               Text="Welcome Username!" 
-               Grid.Column="1"
-               Grid.Row="0" />
-        
-        <Button x:Name="GetMovies"
-                Text="See all movies"
-                Grid.Row="1"
-                Grid.Column="0"
-                Grid.ColumnSpan="3"
-                HorizontalOptions="Center"
-                Clicked="GetAllMovies" />
-        <Button x:Name="FindMovie"
-                Text="Find a movie"
-                Grid.Row="2"
-                Grid.Column="0"
-                Grid.ColumnSpan="3"
-                HorizontalOptions="CenterAndExpand" 
-                Clicked="FindMovies"/>
-        <Button x:Name="AddMovie"
-                Text="Add a movie"
-                Grid.Row="3"
-                Grid.Column="0"
-                Grid.ColumnSpan="3"
-                HorizontalOptions="CenterAndExpand"
-                Clicked="AddMovies"/>
-        <Label Text="Date/Time"
-               Grid.Row="4"
-               Grid.Column="0"
-               VerticalOptions="End"/>
-    </Grid>
+ 
 </ContentPage>
