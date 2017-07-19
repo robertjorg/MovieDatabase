@@ -2,9 +2,20 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Movies.Frontend.App">
-	<Application.Resources>
-
-		<!-- Application resource dictionary -->
-
-	</Application.Resources>
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="backgroundColor" x:FactoryMethod="FromHex">
+                <x:Arguments>
+                    <x:String>
+                        #FFF6F6
+                    </x:String>
+                </x:Arguments>
+            </Color>
+            <Color x:Key="blackTextColor">Black</Color>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="#E2EAE2" />
+                <Setter Property="BarTextColor" Value="#6B866B" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>

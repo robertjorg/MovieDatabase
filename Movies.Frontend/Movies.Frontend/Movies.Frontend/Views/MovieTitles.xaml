@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Movies.Frontend.Views.MovieTitles"
+             Title="Movies Available"
+             BackgroundColor="{StaticResource backgroundColor}">
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddMovieCommand}" />
+    </ContentPage.ToolbarItems>-->
+    <StackLayout>
+        <SearchBar Text="{Binding Path=SearchText, Mode=TwoWay}" 
+                   SearchCommand="{Binding SearchDataCommand}" 
+                   Placeholder="Search title or storage type" 
+                   HeightRequest="40"
+                   TextColor="{StaticResource blackTextColor}"/>
+        <ListView
+        ItemsSource ="{Binding Movies}"
+        SelectedItem="{Binding SelectedMovie, Mode=TwoWay}"
+        ItemSelected="OnMovieSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Title}" Detail="{Binding StorageType}" TextColor="{StaticResource blackTextColor}" DetailColor="{StaticResource blackTextColor}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Text="Add Movie" Command="{Binding AddMovieCommand}"/>
+    </StackLayout>
+</ContentPage>
