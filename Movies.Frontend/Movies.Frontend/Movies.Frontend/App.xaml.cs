@@ -15,6 +15,7 @@ namespace Movies.Frontend
 
             MainPage = new NavigationPage(new Movies.Frontend.Views.MovieTitles());
             //MainPage = new NavigationPage(new Movies.Frontend.Views.StorageTypes());
+            //MainPage = new NavigationPage(new Movies.Frontend.Views.PlexLogin());
         }
 
         protected override void OnStart()
